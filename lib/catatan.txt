@@ -19,7 +19,6 @@ fungsi positionPolar ada parameter buat kemiringan
 track ball
 tombol geser putar horizontal
 
-blitz sprite  dan image digabung, dari image digabung ke sprite, dan image dihapus
 static diganti instance
 input dibuat standard
 

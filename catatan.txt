@@ -4,7 +4,6 @@ tombol UI (pustaka tambahan)
     tombol
     knop
 
-
 geometri (pustaka tambahan):
 ============================
 titik di dalam polygon
