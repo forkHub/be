@@ -19,4 +19,8 @@ call publis.bat
 cd ..
 echo. 
 
+echo js dan definition:
+echo ==================
+copy output\*.* web\output\*.*
+
 pause
