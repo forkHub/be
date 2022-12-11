@@ -24,6 +24,12 @@ copy ..\output\*.d.ts .\expl\dts
 copy ..\output\*.min.js .\expl\web\js
 echo.
 
+echo jam:
+echo =====
+copy ..\output\*.d.ts .\jam\dts
+copy ..\output\*.min.js .\jam\web\js
+echo.
+
 echo knob:
 echo =====
 copy ..\output\*.d.ts .\knob\dts

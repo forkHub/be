@@ -27,6 +27,8 @@ namespace ha {
 		//library
 		static copy(sprS: ISprite): ISprite {
 			if (sprS.buffer.isAnim) {
+				console.debug('copy sprite anim');
+				console.debug(sprS);
 				return ha.Sprite.muatAnimasiAsyncKanvas(sprS.url, sprS.buffer.frameW, sprS.buffer.frameH, sprS.dragable, sprS.buffer.canvas, sprS.tipeDrag);
 			}
 			else {
@@ -103,7 +105,7 @@ namespace ha {
 			url: string,
 			pf: number,
 			lf: number,
-			bisaDiDrag: boolean = false,
+			bisaDiDrag: boolean,
 			canvas: HTMLCanvasElement,
 			tipeDrag: number): ISprite {
 
@@ -149,7 +151,8 @@ namespace ha {
 			hasil.url = url;
 			this.daftar.push(hasil);
 
-			console.log('buat sprite');
+			console.debug('buat sprite');
+			console.debug(hasil);
 
 			return hasil;
 		}

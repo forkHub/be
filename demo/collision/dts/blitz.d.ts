@@ -59,7 +59,7 @@ declare namespace ha {
         static handleY(gbr: IGambar): number;
         static tabrakan(gbr1: IGambar, x1: number, y1: number, gbr2: IGambar, x2: number, y2: number): boolean;
         static dotDidalamGambar(gbr1: IGambar, x1: number, y1: number, x2: number, y2: number): boolean;
-        static muatAnimAsync(url: string, fw?: number, fh?: number): IGambar;
+        static muatAnimAsync(url: string, fw: number, fh: number): IGambar;
         static muatAnimAsyncCanvas(url: string, fw: number, fh: number, canvas: HTMLCanvasElement): IGambar;
         static muatAsync(url: string): IGambar;
         static muatAsyncKanvas(url: string, canvas: HTMLCanvasElement): IGambar;

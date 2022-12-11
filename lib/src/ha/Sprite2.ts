@@ -13,16 +13,20 @@ namespace ha {
 				item = ha.Sprite.daftar[i];
 
 				if (ha.Image.dotDidalamGambar(item.buffer, item.x, item.y, pos.x, pos.y)) {
-					item.down = true;
-					item.dragStartX = pos.x - item.x;
-					item.dragStartY = pos.y - item.y;
-					item.sudutTekanAwal = ha.Transform.deg(pos.x - item.x, pos.y - item.y);
-					item.sudutAwal = item.buffer.rotasi;
 
-					console.debug('item down');
-					console.debug('sudut tekan awal: ' + item.sudutTekanAwal);
-					console.debug('sudut awal: ' + item.sudutAwal);
-					return;
+					if (item.tipeDrag == 1) {
+						item.down = true;
+						item.dragStartX = pos.x - item.x;
+						item.dragStartY = pos.y - item.y;
+						item.sudutTekanAwal = ha.Transform.deg(pos.x - item.x, pos.y - item.y);
+						item.sudutAwal = item.buffer.rotasi;
+
+						console.debug('item down');
+						console.debug('sudut tekan awal: ' + item.sudutTekanAwal);
+						console.debug('sudut awal: ' + item.sudutAwal);
+
+						return;
+					}
 				}
 			}
 		}
@@ -43,10 +47,10 @@ namespace ha {
 						let perbedaan: number = sudut2 - item.sudutTekanAwal;
 						item.buffer.rotasi = item.sudutAwal + perbedaan;
 
-						console.debug('item drag move');
-						console.debug('sudut2: ' + sudut2);
-						console.debug('perbedaan: ' + perbedaan);
-						console.debug('item rotasi: ' + item.buffer.rotasi);
+						// console.debug('item drag move');
+						// console.debug('sudut ptr: ' + sudut2);
+						// console.debug('perbedaan: ' + perbedaan);
+						// console.debug('item rotasi: ' + item.buffer.rotasi);
 					}
 
 				}
@@ -57,6 +61,10 @@ namespace ha {
 			ha.Sprite.daftar.forEach((item: ISprite) => {
 				if (item.down) {
 					item.hit++;
+				}
+
+				if (item.dragged) {
+					console.log('input up: item rotasi ' + item.buffer.rotasi)
 				}
 
 				item.down = false;
