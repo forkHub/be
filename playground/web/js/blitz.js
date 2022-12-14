@@ -672,6 +672,11 @@ var ha;
             hasil = new Sprite(image, dragable);
             hasil.tipeDrag = tipeDrag;
             hasil.url = url;
+            if (hasil.dragable) {
+                if (hasil.tipeDrag == 0) {
+                    hasil.tipeDrag = 1;
+                }
+            }
             this.daftar.push(hasil);
             console.debug('buat sprite');
             console.debug(hasil);
@@ -1423,6 +1428,7 @@ var ha;
                 ha.Teks.font("12px sans-serif");
                 ha.Teks.rata("center");
                 ha.Main.warna(255, 255, 255, 100);
+                ha.Main.canvasAktif.ctx.strokeStyle = "#ffffff";
             }
         }
         static loop() {
@@ -1746,6 +1752,7 @@ var ha;
 (function (ha) {
     class Sprite2 {
         inputDown(pos) {
+            console.debug('input down');
             ha.Sprite.daftar.forEach((item) => {
                 item.down = false;
             });
@@ -1753,12 +1760,12 @@ var ha;
                 let item;
                 item = ha.Sprite.daftar[i];
                 if (ha.Image.dotDidalamGambar(item.buffer, item.x, item.y, pos.x, pos.y)) {
-                    if (item.tipeDrag == 1) {
-                        item.down = true;
-                        item.dragStartX = pos.x - item.x;
-                        item.dragStartY = pos.y - item.y;
-                        item.sudutTekanAwal = ha.Transform.deg(pos.x - item.x, pos.y - item.y);
-                        item.sudutAwal = item.buffer.rotasi;
+                    item.down = true;
+                    item.dragStartX = pos.x - item.x;
+                    item.dragStartY = pos.y - item.y;
+                    item.sudutTekanAwal = ha.Transform.deg(pos.x - item.x, pos.y - item.y);
+                    item.sudutAwal = item.buffer.rotasi;
+                    if (item.tipeDrag == 2) {
                         console.debug('item down');
                         console.debug('sudut tekan awal: ' + item.sudutTekanAwal);
                         console.debug('sudut awal: ' + item.sudutAwal);
@@ -1771,11 +1778,11 @@ var ha;
             ha.Sprite.daftar.forEach((item) => {
                 if (item.down && item.dragable) {
                     item.dragged = true;
-                    if (item.tipeDrag == 0) {
+                    if (item.tipeDrag == 1) {
                         item.x = pos.x - item.dragStartX;
                         item.y = pos.y - item.dragStartY;
                     }
-                    else if (item.tipeDrag == 1) {
+                    else if (item.tipeDrag == 2) {
                         let sudut2 = ha.Transform.deg(pos.x - item.x, pos.y - item.y);
                         let perbedaan = sudut2 - item.sudutTekanAwal;
                         item.buffer.rotasi = item.sudutAwal + perbedaan;

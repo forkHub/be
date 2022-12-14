@@ -7,11 +7,23 @@ let hasil: string = '';
 // let statusEnter: boolean = false;
 let statusKomentSekarang: boolean = false;
 let statusKomentSebelum: boolean = false;
+let barisKosong: boolean = false;
 
 buff.split(/\n/).forEach((str: string) => {
 	updateStatusKomentar(str);
 
+	// console.log(str);
+	if (str.length == 0) {
+		// console.log('baris kosong')
+		barisKosong = true;
+	}
+	else {
+		// console.log('baris tidak kosong')
+		barisKosong = false;
+	}
+
 	if (tambahEnterSebelum(str)) {
+		// console.log('tambah enter');
 		hasil += '\n';
 		// statusEnter = true; 
 	}
@@ -20,7 +32,10 @@ buff.split(/\n/).forEach((str: string) => {
 	}
 
 	hasil += str;
-	hasil += '\n';
+
+	if (!barisKosong) {
+		hasil += '\n';
+	}
 
 	if (tambahEnterSesudah(str)) {
 		hasil += '\n';
@@ -60,6 +75,11 @@ function updateStatusKomentar(str: string): void {
 }
 
 function tambahEnterSebelum(str: string): boolean {
+	if (barisKosong) {
+		// console.log('tidak tambah enter sebelum');
+		return false;
+	}
+
 	if (statusKomentSebelum == false) {
 		if (str.indexOf('//') > -1) return true;
 		if (str.indexOf('/*') > -1) return true;

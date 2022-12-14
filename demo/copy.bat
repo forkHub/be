@@ -66,12 +66,6 @@ copy ..\output\*.d.ts .\snow\dts
 copy ..\output\*.min.js .\snow\web\js
 echo.
 
-echo test_text:
-echo ==========
-copy ..\output\*.d.ts .\test_text\dts
-copy ..\output\*.min.js .\test_text\web\js
-echo.
-
 echo tile:
 echo =====
 copy ..\output\*.d.ts .\tile\dts

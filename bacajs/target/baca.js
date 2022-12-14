@@ -10,9 +10,20 @@ let hasil = '';
 // let statusEnter: boolean = false;
 let statusKomentSekarang = false;
 let statusKomentSebelum = false;
+let barisKosong = false;
 buff.split(/\n/).forEach((str) => {
     updateStatusKomentar(str);
+    // console.log(str);
+    if (str.length == 0) {
+        // console.log('baris kosong')
+        barisKosong = true;
+    }
+    else {
+        // console.log('baris tidak kosong')
+        barisKosong = false;
+    }
     if (tambahEnterSebelum(str)) {
+        // console.log('tambah enter');
         hasil += '\n';
         // statusEnter = true; 
     }
@@ -20,7 +31,9 @@ buff.split(/\n/).forEach((str) => {
         // statusEnter = false;
     }
     hasil += str;
-    hasil += '\n';
+    if (!barisKosong) {
+        hasil += '\n';
+    }
     if (tambahEnterSesudah(str)) {
         hasil += '\n';
     }
@@ -52,6 +65,10 @@ function updateStatusKomentar(str) {
     // console.log('');
 }
 function tambahEnterSebelum(str) {
+    if (barisKosong) {
+        // console.log('tidak tambah enter sebelum');
+        return false;
+    }
     if (statusKomentSebelum == false) {
         if (str.indexOf('//') > -1)
             return true;

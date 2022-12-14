@@ -68,3 +68,21 @@ interface IPoint2D {
 	x: number,
 	y: number
 }
+
+interface ISprite {
+	buffer: IGambar,
+	x: number,
+	y: number,
+	dragable: boolean
+	dragged: boolean
+	down: boolean
+	hit: number
+	dragStartX: number
+	dragStartY: number
+	url: string
+
+	//
+	tipeDrag: number; //1 drag, 2 rotasi, 3 skew (todo)
+	sudutTekanAwal: number
+	sudutAwal: number
+}

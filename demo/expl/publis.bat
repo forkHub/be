@@ -9,7 +9,12 @@ node %BACA_JS% %file_js% %file_js%
 cd ..
 cd ..
 
-xcopy web ..\..\web\demo\%folder% /s /i /y
-copy .\web\js\%file_js% ..\..\web\pg\data\%file_js% /y
+echo copy demo
+echo =========
+xcopy web ..\..\blitz_edu\demo\%folder% /s /i /y
+
+echo copy data
+echo =========
+copy .\web\js\%file_js% ..\..\blitz_edu\pg\data\%file_js% /y
 
 pause

@@ -21,6 +21,8 @@ echo.
 
 echo js dan definition:
 echo ==================
-copy output\*.* web\output\*.*
+copy output\*.* blitz_edu\output\*.*
+
+call template.bat
 
 pause

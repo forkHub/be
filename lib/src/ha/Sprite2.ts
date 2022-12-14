@@ -2,6 +2,7 @@ namespace ha {
 
 	class Sprite2 {
 		inputDown(pos: any): void {
+			console.debug('input down');
 			ha.Sprite.daftar.forEach((item: ISprite) => {
 				item.down = false;
 			});
@@ -14,12 +15,14 @@ namespace ha {
 
 				if (ha.Image.dotDidalamGambar(item.buffer, item.x, item.y, pos.x, pos.y)) {
 
-					if (item.tipeDrag == 1) {
-						item.down = true;
-						item.dragStartX = pos.x - item.x;
-						item.dragStartY = pos.y - item.y;
-						item.sudutTekanAwal = ha.Transform.deg(pos.x - item.x, pos.y - item.y);
-						item.sudutAwal = item.buffer.rotasi;
+					item.down = true;
+					item.dragStartX = pos.x - item.x;
+					item.dragStartY = pos.y - item.y;
+
+					item.sudutTekanAwal = ha.Transform.deg(pos.x - item.x, pos.y - item.y);
+					item.sudutAwal = item.buffer.rotasi;
+
+					if (item.tipeDrag == 2) {
 
 						console.debug('item down');
 						console.debug('sudut tekan awal: ' + item.sudutTekanAwal);
@@ -37,11 +40,11 @@ namespace ha {
 				if (item.down && item.dragable) {
 					item.dragged = true;
 
-					if (item.tipeDrag == 0) {
+					if (item.tipeDrag == 1) {
 						item.x = pos.x - item.dragStartX
 						item.y = pos.y - item.dragStartY
 					}
-					else if (item.tipeDrag == 1) {
+					else if (item.tipeDrag == 2) {
 						//TODO: peruban sudut
 						let sudut2: number = ha.Transform.deg(pos.x - item.x, pos.y - item.y);
 						let perbedaan: number = sudut2 - item.sudutTekanAwal;

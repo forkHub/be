@@ -73,6 +73,7 @@ namespace ha {
 				ha.Teks.font("12px sans-serif");
 				ha.Teks.rata("center");
 				ha.Main.warna(255, 255, 255, 100);
+				ha.Main.canvasAktif.ctx.strokeStyle = "#ffffff";
 			}
 		}
 

@@ -59,7 +59,7 @@ declare namespace ha {
         static handleY(gbr: IGambar): number;
         static tabrakan(gbr1: IGambar, x1: number, y1: number, gbr2: IGambar, x2: number, y2: number): boolean;
         static dotDidalamGambar(gbr1: IGambar, x1: number, y1: number, x2: number, y2: number): boolean;
-        static muatAnimAsync(url: string, fw?: number, fh?: number): IGambar;
+        static muatAnimAsync(url: string, fw: number, fh: number): IGambar;
         static muatAnimAsyncCanvas(url: string, fw: number, fh: number, canvas: HTMLCanvasElement): IGambar;
         static muatAsync(url: string): IGambar;
         static muatAsyncKanvas(url: string, canvas: HTMLCanvasElement): IGambar;
@@ -140,21 +140,6 @@ declare namespace ha {
         get url(): string;
         set url(value: string);
     }
-}
-interface ISprite {
-    buffer: IGambar;
-    x: number;
-    y: number;
-    dragable: boolean;
-    dragged: boolean;
-    down: boolean;
-    hit: number;
-    dragStartX: number;
-    dragStartY: number;
-    url: string;
-    tipeDrag: number;
-    sudutTekanAwal: number;
-    sudutAwal: number;
 }
 declare namespace ha {
     class Input {
@@ -404,6 +389,21 @@ interface IV2D {
 interface IPoint2D {
     x: number;
     y: number;
+}
+interface ISprite {
+    buffer: IGambar;
+    x: number;
+    y: number;
+    dragable: boolean;
+    dragged: boolean;
+    down: boolean;
+    hit: number;
+    dragStartX: number;
+    dragStartY: number;
+    url: string;
+    tipeDrag: number;
+    sudutTekanAwal: number;
+    sudutAwal: number;
 }
 declare namespace ha {
     class Sprite2 {

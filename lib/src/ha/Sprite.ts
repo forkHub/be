@@ -149,6 +149,12 @@ namespace ha {
 			hasil = new Sprite(image, dragable);
 			hasil.tipeDrag = tipeDrag;
 			hasil.url = url;
+			if (hasil.dragable) {
+				if (hasil.tipeDrag == 0) {
+					hasil.tipeDrag = 1;
+				}
+			}
+
 			this.daftar.push(hasil);
 
 			console.debug('buat sprite');
@@ -292,20 +298,3 @@ namespace ha {
 
 }
 
-interface ISprite {
-	buffer: IGambar,
-	x: number,
-	y: number,
-	dragable: boolean
-	dragged: boolean
-	down: boolean
-	hit: number
-	dragStartX: number
-	dragStartY: number
-	url: string
-
-	//
-	tipeDrag: number; //0 drag, 1 rotasi, 2 skew (todo)
-	sudutTekanAwal: number
-	sudutAwal: number
-}
