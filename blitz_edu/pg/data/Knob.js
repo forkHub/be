@@ -10,7 +10,7 @@ Posisi(tombol, 200, 200);
 let pegangan = Muat("./gbr/knob_tombol.png", true);
 Handle(pegangan, 16, 16);
 Posisi(pegangan, 245, 200);
-Alpha(pegangan, 128);
+Alpha(pegangan, 50);
 
 function Loop() {
     Bersih();
@@ -21,9 +21,7 @@ function Loop() {
     //rotasi tombol berdasarkan sudut
     Rotasi(tombol, sudut);
 
-    //jaga posisi pegangan sesuai sudut 
-    //agar posisi pegangan tidak kemana-mana
-    //karena pegangan bisa di drag
+    //jaga posisi pegangan agar tetap di tempatnya
     PosisiPolar(pegangan, sudut, 45, PosisiX(tombol), PosisiY(tombol));
     Gambar(tombol);
     Gambar(pegangan);

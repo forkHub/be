@@ -1,20 +1,16 @@
-Grafis(300, 300);
-
-let jam = Muat('gbr/jam_dasar.png');
-Handle(jam, 160, 160);
-Posisi(jam, 150, 150);
-let jarumPanjang = MuatAnimasi('gbr/jam_jarum.png', 124, 28, true, 1);
-Handle(jarumPanjang, 14, 14);
-Posisi(jarumPanjang, 150, 150);
-let jarumPendek = Copy(jarumPanjang);
-Handle(jarumPendek, 14, 14);
-Posisi(jarumPendek, 150, 150);
-let db = document.querySelector('div.debug');
-
+Grafis(160, 160);
+let jam = Muat('gbr/jam.png');
+Handle(jam, 64, 64);
+Posisi(jam, 80, 80);
+let jarumPanjang = Muat('gbr/jarum_panjang.png', true, 2);
+Handle(jarumPanjang, 5, 50);
+Posisi(jarumPanjang, 80, 80);
+let jarumPendek = Muat('gbr/jarum_pendek.png', true, 2);
+Handle(jarumPendek, 5, 30);
+Posisi(jarumPendek, 80, 80);
 function Loop() {
-    Bersih(255, 255, 0);
+    Bersih();
     Gambar(jam);
-    Gambar(jarumPanjang, 1);
-    Gambar(jarumPendek, 2);
-    db.innerHTML = jarumPanjang.buffer.rotasi + '';
+    Gambar(jarumPanjang);
+    Gambar(jarumPendek);
 }
