@@ -38,8 +38,8 @@ class Edit2 {
 		this.myCodeMirror = CodeMirror.fromTextArea(this.editArea, {
 			lineNumbers: false,
 			styleActiveLine: true,
-			matchBrackets: true,
-			theme: 'ambiance'
+			matchBrackets: true
+			// theme: 'ambiance'
 		});
 
 		console.log(CodeMirror);
