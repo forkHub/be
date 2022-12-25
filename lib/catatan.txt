@@ -1,3 +1,5 @@
+dokumentasi statusMuat()
+
 ctx.font = 'bold 10px Arial';
 lineHeight = ctx.measureText('M').width;
 width = height

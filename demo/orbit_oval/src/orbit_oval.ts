@@ -22,13 +22,13 @@ Handle(bulan, 12, 12);
 function Loop(): void {
 	Bersih();
 
-	//sudut bumi
+	//perubahan sudut bumi
 	sudut += .5;
 	if (sudut > 360) {
 		sudut -= 360;
 	}
 
-	//sudut bulan
+	//perubahan sudut bulan
 	sudutBulan += 6;
 	if (sudutBulan > 360) {
 		sudutBulan -= 360;
@@ -38,12 +38,14 @@ function Loop(): void {
 	//dengan skala vertikal .5
 	//untuk membuat gerakan memutar oval
 	PosisiPolar(bumi, sudut, 350, PosisiX(matahari), PosisiY(matahari), 1, .5);
+
+	//geser posisi bumi agak ke kanan
 	Posisi(bumi, PosisiX(bumi) + 180, PosisiY(bumi));
 
 	//posisi bulan terhadap bumi
 	PosisiPolar(bulan, sudutBulan, 60, PosisiX(bumi), PosisiY(bumi));
 
-	//oval
+	//gambar oval
 	Oval(PosisiX(matahari) + 180, PosisiY(matahari), 350, 1, .5);
 
 	//gambar semua sprite

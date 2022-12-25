@@ -4,6 +4,7 @@
 // const Buat = ha.Sprite.buat;
 const Muat = ha.Sprite.muatAsync;
 const MuatAnimasi = ha.Sprite.muatAnimasiAsync;
+const StatusMuat = ha.Sprite.statusMuat;
 const Posisi = ha.Sprite.posisi;
 const Ukuran = ha.Sprite.ukuran;
 const PosisiPolar = ha.Sprite.posisiPolar;

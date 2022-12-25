@@ -64,6 +64,14 @@ call tsc -p .\tsconfig.json
 cd ..
 echo. 
 
+echo orbit_-4:
+echo ==========
+cd orbit_04
+cd
+call tsc -p .\tsconfig.json
+cd ..
+echo. 
+
 echo orbit_mbb:
 echo ==========
 cd orbit_mbb

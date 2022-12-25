@@ -699,8 +699,11 @@ var ha;
         static ubin(spr, x = 0, y = 0, frame = 0) {
             ha.Image.gambarUbin(spr.buffer, x, y, frame);
         }
-        static semuaDiLoad() {
+        static statusMuat(spr) {
             let hasil = true;
+            if (spr && spr.buffer) {
+                return spr.buffer.load;
+            }
             ha.Sprite.daftar.forEach((item) => {
                 if (!item.buffer.load) {
                     hasil = false;
@@ -1699,6 +1702,7 @@ const Oval = ha.Main.Oval;
 const Sudut = ha.Transform.deg;
 const Muat = ha.Sprite.muatAsync;
 const MuatAnimasi = ha.Sprite.muatAnimasiAsync;
+const StatusMuat = ha.Sprite.statusMuat;
 const Posisi = ha.Sprite.posisi;
 const Ukuran = ha.Sprite.ukuran;
 const PosisiPolar = ha.Sprite.posisiPolar;

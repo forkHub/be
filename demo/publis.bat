@@ -64,6 +64,14 @@ call publis.bat
 cd ..
 echo. 
 
+echo orbit_04:
+echo ==========
+cd orbit_04
+cd
+call publis.bat
+cd ..
+echo. 
+
 echo orbit_mbb:
 echo ==========
 cd orbit_mbb

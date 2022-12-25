@@ -48,6 +48,12 @@ copy ..\output\*.d.ts .\orbit\dts
 copy ..\output\*.min.js .\orbit\web\js
 echo.
 
+echo orbit_04:
+echo =========
+copy ..\output\*.d.ts .\orbit_04\dts
+copy ..\output\*.min.js .\orbit_04\web\js
+echo.
+
 echo orbit_mbb:
 echo ==========
 copy ..\output\*.d.ts .\orbit_mbb\dts

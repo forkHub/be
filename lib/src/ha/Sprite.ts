@@ -163,18 +163,6 @@ namespace ha {
 			return hasil;
 		}
 
-		// static inputDown(pos: any): void {
-		// 	sprite2.inputDown(pos);
-		// }
-
-		// static inputMove(pos: any): void {
-		// 	sprite2.inputMove(pos);
-		// }
-
-		// static inputUp(): void {
-		// 	sprite2.inputUp();
-		// }
-
 		static gambar(sprite: ISprite, frame?: number): void {
 			ha.Image.gambar(sprite.buffer, sprite.x, sprite.y, frame);
 		}
@@ -198,8 +186,12 @@ namespace ha {
 			ha.Image.gambarUbin(spr.buffer, x, y, frame);
 		}
 
-		static semuaDiLoad(): boolean {
+		static statusMuat(spr?: ISprite): boolean {
 			let hasil: boolean = true;
+
+			if (spr && spr.buffer) {
+				return spr.buffer.load;
+			}
 
 			ha.Sprite.daftar.forEach((item: ISprite) => {
 				if (!item.buffer.load) {

@@ -112,7 +112,7 @@ declare namespace ha {
         static gambar(sprite: ISprite, frame?: number): void;
         static posisiPolar(sprite: ISprite, sudut: number, jarak: number, x2: number, y2: number, skalaX?: number, skalaY?: number): void;
         static ubin(spr: ISprite, x?: number, y?: number, frame?: number): void;
-        static semuaDiLoad(): boolean;
+        static statusMuat(spr?: ISprite): boolean;
         get dragStartX(): number;
         set dragStartX(value: number);
         get dragStartY(): number;
@@ -309,6 +309,7 @@ declare const Oval: typeof ha.Main.Oval;
 declare const Sudut: typeof ha.Transform.deg;
 declare const Muat: typeof ha.Sprite.muatAsync;
 declare const MuatAnimasi: typeof ha.Sprite.muatAnimasiAsync;
+declare const StatusMuat: typeof ha.Sprite.statusMuat;
 declare const Posisi: typeof ha.Sprite.posisi;
 declare const Ukuran: typeof ha.Sprite.ukuran;
 declare const PosisiPolar: typeof ha.Sprite.posisiPolar;
