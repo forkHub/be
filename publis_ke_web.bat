@@ -1,7 +1,11 @@
 @echo off
 echo off
 
+echo set env
+============
+call setenv.bat
+
 echo copy ke web
-xcopy blitz_edu\*.* ..\forkhub.github.io\blitz_edu\ /s /q /y
+xcopy %STAGING%\*.* ..\forkhub.github.io\blitz_edu\ /s /q /y
 
 pause

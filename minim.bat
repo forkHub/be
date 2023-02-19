@@ -1,14 +1,14 @@
+@echo off
 echo off
-rem build
-rem =====
 
-@REM cd lib
-@REM call build.bat
-@REM cd ..
+echo TASK: MINIM MULAI
+echo =================
 
 cd output
 node ..\minim\target\minim blitz.js blitz.min.js
 cd ..
 
-
 pause
+
+echo TASK: MINIM SELESAI
+echo ===================
