@@ -23,6 +23,10 @@ namespace ha {
 			this._mouseGlobal.type = 'mouse';
 		}
 
+		InputType(): string {
+			return this._inputGlobal.type;
+		}
+
 		InputHit(): number {
 			let hit: number = ha.input.inputGlobal.hit;
 			ha.input.inputGlobal.hit = 0;

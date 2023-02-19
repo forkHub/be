@@ -36,6 +36,19 @@ namespace ha {
 			}
 		}
 
+		static statusDrag(spr: ISprite): boolean {
+			let hasil: boolean = false;
+
+			this.daftar.forEach((item: ISprite) => {
+				if (spr == item) {
+					hasil = spr.dragged;
+					return;
+				}
+			});
+
+			return hasil;
+		}
+
 		static panjang(spr: ISprite, pj?: number): number {
 			return ha.Image.panjang(spr.buffer, pj);
 		}

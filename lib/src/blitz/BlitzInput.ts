@@ -13,6 +13,7 @@ const GeserY = ha.input.GeserY;
 const FlushInput = ha.input.FlushInput;
 const Pencet = ha.input.Pencet;
 const Geser = ha.input.Geser;
+const InputType = ha.input.InputType;
 
 /**
  * 	KEYBOARD (di tunda)

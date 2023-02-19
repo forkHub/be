@@ -16,8 +16,13 @@ const Handle = ha.Sprite.handle;
 const Rotasi = ha.Sprite.rotasi;
 const Alpha = ha.Sprite.alpha;
 const Tabrakan = ha.Sprite.tabrakan;
+const StatusDrag = ha.Sprite.statusDrag;
+
 
 const Panjang = ha.Sprite.panjang;
 const Lebar = ha.Sprite.lebar;
 const Copy = ha.Sprite.copy;
 const Ubin = ha.Sprite.ubin;
+
+//status drag
+//type drag
