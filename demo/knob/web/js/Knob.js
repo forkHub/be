@@ -3,10 +3,13 @@ Grafis(400, 400);
 
 
 
+
+
 //buat tombol
 let tombol = Muat("./gbr/knob.png");
 Handle(tombol, 75, 75);
 Posisi(tombol, 200, 200);
+
 
 
 //buat pegangan
@@ -16,22 +19,27 @@ Posisi(pegangan, 245, 200);
 Alpha(pegangan, 50);
 
 
+
 function Loop() {
     Bersih();
+
 
 
     //hitung sudut antara pegangan dan tombol
     let sudut = Sudut(PosisiX(pegangan) - PosisiX(tombol), PosisiY(pegangan) - PosisiY(tombol));
 
 
+
     //rotasi tombol berdasarkan sudut
     Rotasi(tombol, sudut);
+
 
 
     //jaga posisi pegangan agar tetap di tempatnya
     PosisiPolar(pegangan, sudut, 45, PosisiX(tombol), PosisiY(tombol));
     Gambar(tombol);
     Gambar(pegangan);
+
 
 
     //tulis sudut

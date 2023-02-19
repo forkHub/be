@@ -150,6 +150,7 @@ declare namespace ha {
         private _inputGlobal;
         private _event;
         constructor();
+        InputType(): string;
         InputHit(): number;
         InputX(): number;
         InputY(): number;
@@ -289,6 +290,7 @@ declare const GeserY: () => number;
 declare const FlushInput: () => void;
 declare const Pencet: () => boolean;
 declare const Geser: () => boolean;
+declare const InputType: () => string;
 declare const FlushKeys: () => void;
 declare const GetKey: () => string;
 declare const KeybDiPencet: (key?: string) => boolean;

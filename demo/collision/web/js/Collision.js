@@ -1,10 +1,12 @@
 Grafis(320, 240);
 
 
+
 let rot = 0;
 let jml = 10;
 let boxAr = [];
 let spr = Muat('./gbr/box.png');
+
 
 
 for (let i = 0; i < jml; i++) {
@@ -21,8 +23,10 @@ Handle(imgBesar, 16, 100);
 Rotasi(imgBesar, 30);
 
 
+
 function Loop() {
     Bersih();
+
 
 
     for (let i = 0; i < jml; i++) {
@@ -30,10 +34,12 @@ function Loop() {
         Posisi(box, PosisiX(box) + 10, PosisiY(box));
 
 
+
         if (PosisiX(box) > 320) {
             PosisiX(box, 0);
             PosisiY(box, Math.floor(Math.random() * 240));
         }
+
 
 
         if (Tabrakan(box, imgBesar)) {

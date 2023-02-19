@@ -3,8 +3,11 @@ Grafis(120, 160);
 
 
 
+
+
 //buat 100 object salju
 let salju = [];
+
 
 
 for (let i = 0; i < 100; i++) {
@@ -15,12 +18,15 @@ for (let i = 0; i < 100; i++) {
 }
 
 
+
 //looping
 function Loop() {
 
 
+
     //proses tiap salju
     salju.forEach((item) => {
+
 
 
         //check apakah masih bisa turun ke bawah
@@ -28,14 +34,17 @@ function Loop() {
             return;
 
 
+
         //check apakah masih bisa turun ke kanan bawah
         if (kanan(item))
             return;
 
 
+
         //check apakah bisa turun ke kiri bawah
         if (kiri(item))
             return;
+
 
 
         //bila sudah tidak bisa gerak
@@ -47,8 +56,10 @@ function Loop() {
 }
 
 
+
 //check apakah bisa belok kiri
 function kiri(salju) {
+
 
 
     //bila sudah sampai bawah tidak perlu lanjut
@@ -56,8 +67,10 @@ function kiri(salju) {
         return false;
 
 
+
     //ambil piksel kiri bawah, untuk di check warnanya
     AmbilPiksel(salju.x - 1, salju.y + 1);
+
 
 
     /**
@@ -68,13 +81,16 @@ function kiri(salju) {
      * */
 
 
+
     if (Biru() > 0) {
         return false;
     }
 
 
+
     //gambar salju dengan posisi belok ke kiri-bawah
     gambarSalju(-1, 1, salju);
+
 
 
     //bila masih bisa gerak maka return true
@@ -82,14 +98,17 @@ function kiri(salju) {
 }
 
 
+
 //check apakah bisa belok kanan
 function kanan(salju) {
+
 
 
     //bila sudah sampai bawah tidak perlu lanjut
     if (salju.y >= 159)
         return false;
     AmbilPiksel(salju.x + 1, salju.y + 1);
+
 
 
     if (Biru() > 0) {
@@ -100,8 +119,10 @@ function kanan(salju) {
 }
 
 
+
 //check apakah bisa turun
 function turun(salju) {
+
 
 
     //bila sudah sampai bawah tidak perlu lanjut
@@ -110,12 +131,14 @@ function turun(salju) {
     AmbilPiksel(salju.x, salju.y + 1);
 
 
+
     if (Biru() > 0) {
         return false;
     }
     gambarSalju(0, 1, salju);
     return true;
 }
+
 
 
 //gambar salju

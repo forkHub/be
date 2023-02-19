@@ -11,10 +11,10 @@ cd ..
 
 echo copy demo
 echo =========
-xcopy web ..\..\blitz_edu\demo\%folder% /s /i /y
+xcopy %STAGING%\demo\%folder% /s /i /y
 
 echo copy data
 echo =========
-copy .\web\js\%file_js% ..\..\blitz_edu\pg\data\%file_js% /y
+copy .\web\js\%file_js% %STAGING%\pg\data\%file_js% /y
 
 pause
