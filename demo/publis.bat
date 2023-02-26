@@ -104,8 +104,9 @@ call publis.bat
 cd ..
 echo. 
 
+echo.
 echo copy gambar:
 echo ============
-xcopy assets\*.* ..%STAGING%\pg\gbr /q /y
+xcopy assets\*.* %STAGING%\pg\gbr /q /y
 
 pause

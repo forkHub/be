@@ -1,6 +1,8 @@
 echo TASK: PUBLISH DEMO START
 echo ========================
 
+call setenv.bat
+
 cd demo
 call publis.bat
 cd ..

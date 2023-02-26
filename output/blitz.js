@@ -646,6 +646,7 @@ var ha;
         }
         static posisiY(spr, y = null) {
             if (typeof (y) == 'number') {
+                debugger;
                 spr.y = y;
             }
             return spr.y;

@@ -6,6 +6,12 @@ copy ..\output\*.d.ts .\collision\dts
 copy ..\output\*.min.js .\collision\web\js
 echo.
 
+echo dasar_hor:
+echo =====
+copy ..\output\*.d.ts .\dasar_hor\dts
+copy ..\output\*.min.js .\dasar_hor\web\js
+echo.
+
 echo doodle:
 echo =====
 copy ..\output\*.d.ts .\doodle\dts

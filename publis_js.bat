@@ -1,11 +1,14 @@
 @echo off
 
+echo.
 echo TASK: PUBLISH JS START
 echo ======================
 
-copy output\*.* staging\output\*.*
+copy output\*.* %STAGING%\output\*.*
 
-pause
-
+echo.
 echo TASK: PUBLISH JS SELESAI
 echo ========================
+echo.
+
+pause

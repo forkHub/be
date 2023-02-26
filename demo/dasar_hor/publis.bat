@@ -1,9 +1,13 @@
 @echo off
 
-set file_js=Drag.js
-set folder=drag02
+if "%BASE_DIR%"=="" (
+	echo env var not set
+	pause
+	exit
+)
 
-REM call tsc -p .\tsconfig.json
+set file_js=dasar_hor.js
+set folder=dasar_hor
 
 cd .\web\js
 node %BACA_JS% %file_js% %file_js%
@@ -11,6 +15,7 @@ node %BACA_JS% %file_js% %file_js%
 cd ..
 cd ..
 
+echo.
 echo copy demo
 echo =========
 xcopy web %STAGING%\demo\%folder% /s /i /y
