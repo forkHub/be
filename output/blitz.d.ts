@@ -93,6 +93,7 @@ declare namespace ha {
         private _sudutAwal;
         constructor(buffer: IGambar, dragable?: boolean);
         static copy(sprS: ISprite): ISprite;
+        static statusDrag(spr: ISprite): boolean;
         static panjang(spr: ISprite, pj?: number): number;
         static lebar(spr: ISprite, lb?: number): number;
         static alpha(spr: ISprite, alpha?: number): number;
@@ -323,6 +324,7 @@ declare const Handle: typeof ha.Sprite.handle;
 declare const Rotasi: typeof ha.Sprite.rotasi;
 declare const Alpha: typeof ha.Sprite.alpha;
 declare const Tabrakan: typeof ha.Sprite.tabrakan;
+declare const StatusDrag: typeof ha.Sprite.statusDrag;
 declare const Panjang: typeof ha.Sprite.panjang;
 declare const Lebar: typeof ha.Sprite.lebar;
 declare const Copy: typeof ha.Sprite.copy;

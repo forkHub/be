@@ -606,6 +606,16 @@ var ha;
                 return ha.Sprite.muatAsyncBerbagiKanvas(sprS.url, sprS.dragable, sprS.buffer.canvas, sprS.tipeDrag);
             }
         }
+        static statusDrag(spr) {
+            let hasil = false;
+            this.daftar.forEach((item) => {
+                if (spr == item) {
+                    hasil = spr.dragged;
+                    return;
+                }
+            });
+            return hasil;
+        }
         static panjang(spr, pj) {
             return ha.Image.panjang(spr.buffer, pj);
         }
@@ -1730,6 +1740,7 @@ const Handle = ha.Sprite.handle;
 const Rotasi = ha.Sprite.rotasi;
 const Alpha = ha.Sprite.alpha;
 const Tabrakan = ha.Sprite.tabrakan;
+const StatusDrag = ha.Sprite.statusDrag;
 const Panjang = ha.Sprite.panjang;
 const Lebar = ha.Sprite.lebar;
 const Copy = ha.Sprite.copy;
