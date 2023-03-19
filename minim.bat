@@ -6,9 +6,16 @@ echo =================
 
 cd output
 node ..\minim\target\minim blitz.js blitz.min.js
+if ERRORLEVEL 1 goto error
 cd ..
 
-pause
 
 echo TASK: MINIM SELESAI
 echo ===================
+goto end
+
+:error
+echo ERROR
+pause
+
+:end

@@ -1,9 +1,16 @@
 /** INPUT.TS */
+enum EInput {
+	TOUCH = 'touch',
+	MOUSE = 'mouse',
+	KEYB = 'keyb',
+	DEF = ''
+}
+
 namespace ha {
 	class Input {
 		private _inputs: IInput[] = [];	//any input,
 
-		//data untuk simpan state tiap input type
+		//data untuk simpan state tiap input type 
 		//tidak support multiple finger
 		private _touchGlobal: IInput;	//global touch
 		private _mouseGlobal: IInput;	//global mouse
@@ -18,13 +25,14 @@ namespace ha {
 			this._keybGlobal = this.buatInputDefault();
 			this._inputGlobal = this.buatInputDefault();
 
-			this._touchGlobal.type = 'touch';
-			this._keybGlobal.type = 'keyb';
-			this._mouseGlobal.type = 'mouse';
+			this._touchGlobal.type = EInput.TOUCH;
+			this._keybGlobal.type = EInput.KEYB;
+			this._mouseGlobal.type = EInput.MOUSE;
 		}
 
-		InputType(): string {
-			return this._inputGlobal.type;
+		InputType(): EInput {
+
+			return ha.input.inputGlobal.type;
 		}
 
 		InputHit(): number {
@@ -82,15 +90,15 @@ namespace ha {
 
 				let pos: any = ha.input.pos(e.clientX, e.clientY, buffer, buffer.ratioX, buffer.ratioY);
 				let key: string = this.getMouseKeyId(e);
-				let input: IInput = ha.input.baru(key, e.pointerType);
+				let input: IInput = ha.input.baru(key, e.pointerType as EInput);
 
-				ha.input.event.down(input, key, e.pointerType, pos);
-				ha.input.event.down(this._inputGlobal, key, e.pointerType, pos);
+				ha.input.event.down(input, key, e.pointerType as EInput, pos);
+				ha.input.event.down(this._inputGlobal, key, e.pointerType as EInput, pos);
 
-				if ("mouse" == e.pointerType) ha.input.event.down(this._mouseGlobal, key, 'mouse', pos);
-				if ("touch" == e.pointerType) ha.input.event.down(this._touchGlobal, key, 'touch', pos);
+				if ("mouse" == e.pointerType) ha.input.event.down(this._mouseGlobal, key, EInput.MOUSE, pos);
+				if ("touch" == e.pointerType) ha.input.event.down(this._touchGlobal, key, EInput.TOUCH, pos);
 
-				ha.sprite2.inputDown(pos)
+				ha.sprite2.inputDown(pos, e.pointerId);
 			}
 
 			buffer.canvas.onpointermove = (e: PointerEvent) => {
@@ -99,7 +107,7 @@ namespace ha {
 
 				let pos: any = ha.input.pos(e.clientX, e.clientY, buffer, buffer.ratioX, buffer.ratioY);
 				let key: string = this.getMouseKeyId(e);
-				let input: IInput = this.baru(key, e.pointerType);
+				let input: IInput = this.baru(key, e.pointerType as EInput);
 
 				ha.input.event.move(input, buffer, e);
 				ha.input.event.move(this.inputGlobal, buffer, e);
@@ -108,7 +116,7 @@ namespace ha {
 				if (e.pointerType == 'mouse') ha.input.event.move(ha.input.mouseGlobal, buffer, e);
 
 				//sprite
-				ha.sprite2.inputMove(pos);
+				ha.sprite2.inputMove(pos, e.pointerId);
 			}
 
 			buffer.canvas.onpointerout = (e: PointerEvent) => {
@@ -116,7 +124,7 @@ namespace ha {
 				e.preventDefault();
 
 				let key: string = ha.input.getMouseKeyId(e);
-				let input: IInput = ha.input.baru(key, e.pointerType);
+				let input: IInput = ha.input.baru(key, e.pointerType as EInput);
 
 				ha.input.event.up(input);
 				ha.input.event.up(ha.input.inputGlobal);
@@ -135,7 +143,7 @@ namespace ha {
 				e.preventDefault();
 
 				let key: string = this.getMouseKeyId(e);
-				let input: IInput = this.baru(key, e.pointerType);
+				let input: IInput = this.baru(key, e.pointerType as EInput);
 
 				ha.input.event.up(input);
 				ha.input.event.up(this.inputGlobal);
@@ -145,12 +153,14 @@ namespace ha {
 				//sprite up
 				//sprite hit
 				ha.Sprite.daftar.forEach((item: ISprite) => {
-					if (item.down) {
-						item.hit++;
-					}
+					if (e.pointerId == item.inputId) {
+						if (item.down) {
+							item.hit++;
+						}
 
-					item.down = false;
-					item.dragged = false;
+						item.down = false;
+						item.dragged = false;
+					}
 				});
 			}
 
@@ -158,18 +168,18 @@ namespace ha {
 				// e.stopPropagation();
 				// e.preventDefault();
 
-				let input: IInput = ha.input.baru(e.key + '', 'keyb');
-				ha.input.event.down(input, e.key, 'keyb', ha.Point.create());
-				ha.input.event.down(this.inputGlobal, e.key, 'keyb', ha.Point.create());
-				ha.input.event.down(this._keybGlobal, e.key, 'keyb', ha.Point.create());
+				let input: IInput = ha.input.baru(e.key + '', EInput.KEYB);
+				ha.input.event.down(input, e.key, EInput.KEYB, ha.Point.create());
+				ha.input.event.down(this.inputGlobal, e.key, EInput.KEYB, ha.Point.create());
+				ha.input.event.down(this._keybGlobal, e.key, EInput.KEYB, ha.Point.create());
 
-				console.log('keydown');
+				// console.log('keydown');
 			};
 
 			window.onkeyup = (e: KeyboardEvent) => {
 				// e.stopPropagation();
 
-				let input: IInput = ha.input.baru(e.key + '', 'keyb');
+				let input: IInput = ha.input.baru(e.key + '', EInput.KEYB);
 				ha.input.event.up(input);
 				ha.input.event.up(this.inputGlobal);
 				ha.input.event.up(this._keybGlobal);
@@ -186,7 +196,7 @@ namespace ha {
 				key: '',
 				timerEnd: 0,
 				timerStart: 0,
-				type: '',
+				type: EInput.DEF,
 				x: 0,
 				xDrag: 0,
 				xStart: 0,
@@ -206,7 +216,7 @@ namespace ha {
 			input.key = '';
 			input.timerEnd = 0;
 			input.timerStart = 0;
-			input.type = '';
+			input.type = EInput.DEF;
 			input.x = 0;
 			input.y = 0;
 			input.xDrag = 0;
@@ -255,7 +265,7 @@ namespace ha {
 			return inputHasil;
 		}
 
-		baru(keyId: string, inputType: string): IInput {
+		baru(keyId: string, inputType: EInput): IInput {
 			let input: IInput = this.getInput(keyId, inputType);
 
 			if (!input) {
@@ -337,7 +347,7 @@ namespace ha {
 
 		}
 
-		down(input: IInput, key: string, type: string, pos: IV2D): void {
+		down(input: IInput, key: string, type: EInput, pos: IV2D): void {
 
 			//TODO: refaktor 
 			if (!input.isDown) {

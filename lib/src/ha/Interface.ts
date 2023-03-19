@@ -3,6 +3,8 @@
  * INTERFACE 
 */
 
+
+
 interface IRect {
 	vs?: IV2D[],
 	segs?: ISegment[]
@@ -25,7 +27,7 @@ interface IInput {
 	isTap: boolean;
 	hit: number;
 	key: string;
-	type: string;
+	type: EInput;
 	timerStart: number;
 	timerEnd: number;
 	id: number;	//TODO: mungkin bisa dihapus
@@ -85,4 +87,5 @@ interface ISprite {
 	tipeDrag: number; //1 drag, 2 rotasi, 3 skew (todo)
 	sudutTekanAwal: number
 	sudutAwal: number
+	inputId: number
 }

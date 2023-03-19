@@ -7,13 +7,25 @@ copy ..\output\*.min.js .\collision\web\js
 echo.
 
 echo dasar_hor:
-echo =====
+echo ==========
 copy ..\output\*.d.ts .\dasar_hor\dts
 copy ..\output\*.min.js .\dasar_hor\web\js
 echo.
 
+echo dasar_multiple:
+echo ===============
+copy ..\output\*.d.ts .\dasar_multiple\dts
+copy ..\output\*.min.js .\dasar_multiple\web\js
+echo.
+
+echo dasar_snap:
+echo ===========
+copy ..\output\*.d.ts .\dasar_snap\dts
+copy ..\output\*.min.js .\dasar_snap\web\js
+echo.
+
 echo doodle:
-echo =====
+echo =======
 copy ..\output\*.d.ts .\doodle\dts
 copy ..\output\*.min.js .\doodle\web\js
 echo.

@@ -19,9 +19,18 @@ namespace ha {
 			t: 1
 		}
 
-		static kontek(spr?: ISprite): CanvasRenderingContext2D {
-			if (spr && spr.buffer.ctx) {
-				return spr.buffer.ctx;
+		//TODOL ganti agar bisa gonta-ganti kontek
+		//parameternya adalah sprite/canvas/kontex
+		//tujuannya agar bisa diedit langsung oleh perintah kontek yang lain
+		static kontek(spr?: ISprite | HTMLCanvasElement): CanvasRenderingContext2D {
+			let spr2: ISprite = spr as ISprite;
+			if (spr2 && spr2.buffer && spr2.buffer.ctx) {
+				return spr2.buffer.ctx;
+			}
+
+			let spr3: HTMLCanvasElement = spr as HTMLCanvasElement;
+			if (spr3 && (spr3 as HTMLCanvasElement).getContext instanceof Function) {
+				return spr3.getContext('2d');
 			}
 
 			return ha.Main.canvasAktif.ctx;

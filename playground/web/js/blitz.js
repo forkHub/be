@@ -17,8 +17,13 @@ var ha;
             t: 1
         };
         static kontek(spr) {
-            if (spr && spr.buffer.ctx) {
-                return spr.buffer.ctx;
+            let spr2 = spr;
+            if (spr2 && spr2.buffer && spr2.buffer.ctx) {
+                return spr2.buffer.ctx;
+            }
+            let spr3 = spr;
+            if (spr3 && spr3.getContext instanceof Function) {
+                return spr3.getContext('2d');
             }
             return ha.Main.canvasAktif.ctx;
         }
@@ -592,6 +597,13 @@ var ha;
         _tipeDrag;
         _sudutTekanAwal;
         _sudutAwal;
+        _inputId;
+        get inputId() {
+            return this._inputId;
+        }
+        set inputId(value) {
+            this._inputId = value;
+        }
         constructor(buffer, dragable = false) {
             this.buffer = buffer;
             this.dragable = dragable;
@@ -882,7 +894,7 @@ var ha;
                     ha.input.event.down(this._mouseGlobal, key, 'mouse', pos);
                 if ("touch" == e.pointerType)
                     ha.input.event.down(this._touchGlobal, key, 'touch', pos);
-                ha.sprite2.inputDown(pos);
+                ha.sprite2.inputDown(pos, e.pointerId);
             };
             buffer.canvas.onpointermove = (e) => {
                 e.stopPropagation();
@@ -896,7 +908,7 @@ var ha;
                     ha.input.event.move(ha.input.touchGlobal, buffer, e);
                 if (e.pointerType == 'mouse')
                     ha.input.event.move(ha.input.mouseGlobal, buffer, e);
-                ha.sprite2.inputMove(pos);
+                ha.sprite2.inputMove(pos, e.pointerId);
             };
             buffer.canvas.onpointerout = (e) => {
                 e.stopPropagation();
@@ -926,11 +938,13 @@ var ha;
                 if (e.pointerType == 'mouse')
                     ha.input.event.up(ha.input.mouseGlobal);
                 ha.Sprite.daftar.forEach((item) => {
-                    if (item.down) {
-                        item.hit++;
+                    if (e.pointerId == item.inputId) {
+                        if (item.down) {
+                            item.hit++;
+                        }
+                        item.down = false;
+                        item.dragged = false;
                     }
-                    item.down = false;
-                    item.dragged = false;
                 });
             };
             window.onkeydown = (e) => {
@@ -938,7 +952,6 @@ var ha;
                 ha.input.event.down(input, e.key, 'keyb', ha.Point.create());
                 ha.input.event.down(this.inputGlobal, e.key, 'keyb', ha.Point.create());
                 ha.input.event.down(this._keybGlobal, e.key, 'keyb', ha.Point.create());
-                console.log('keydown');
             };
             window.onkeyup = (e) => {
                 let input = ha.input.baru(e.key + '', 'keyb');
@@ -1781,11 +1794,8 @@ var ha;
 var ha;
 (function (ha) {
     class Sprite2 {
-        inputDown(pos) {
+        inputDown(pos, id) {
             console.debug('input down');
-            ha.Sprite.daftar.forEach((item) => {
-                item.down = false;
-            });
             for (let i = ha.Sprite.daftar.length - 1; i >= 0; i--) {
                 let item;
                 item = ha.Sprite.daftar[i];
@@ -1793,20 +1803,15 @@ var ha;
                     item.down = true;
                     item.dragStartX = pos.x - item.x;
                     item.dragStartY = pos.y - item.y;
+                    item.inputId = id;
                     item.sudutTekanAwal = ha.Transform.deg(pos.x - item.x, pos.y - item.y);
                     item.sudutAwal = item.buffer.rotasi;
-                    if (item.tipeDrag == 2) {
-                        console.debug('item down');
-                        console.debug('sudut tekan awal: ' + item.sudutTekanAwal);
-                        console.debug('sudut awal: ' + item.sudutAwal);
-                        return;
-                    }
                 }
             }
         }
-        inputMove(pos) {
+        inputMove(pos, pointerId) {
             ha.Sprite.daftar.forEach((item) => {
-                if (item.down && item.dragable) {
+                if (item.down && item.dragable && (item.inputId == pointerId)) {
                     item.dragged = true;
                     if (item.tipeDrag == 1) {
                         item.x = pos.x - item.dragStartX;

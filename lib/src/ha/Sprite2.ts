@@ -1,11 +1,16 @@
 namespace ha {
+	enum TypeDrag {
+		drag = 1,
+		rotasi = 2
+	}
 
 	class Sprite2 {
-		inputDown(pos: any): void {
+		inputDown(pos: any, id: number): void {
 			console.debug('input down');
-			ha.Sprite.daftar.forEach((item: ISprite) => {
-				item.down = false;
-			});
+
+			// ha.Sprite.daftar.forEach((item: ISprite) => {
+			// 	item.down = false;
+			// });
 
 			//sprite down
 			for (let i: number = ha.Sprite.daftar.length - 1; i >= 0; i--) {
@@ -18,33 +23,34 @@ namespace ha {
 					item.down = true;
 					item.dragStartX = pos.x - item.x;
 					item.dragStartY = pos.y - item.y;
+					item.inputId = id;
 
 					item.sudutTekanAwal = ha.Transform.deg(pos.x - item.x, pos.y - item.y);
 					item.sudutAwal = item.buffer.rotasi;
 
-					if (item.tipeDrag == 2) {
+					// if (item.tipeDrag == 2) {
 
-						console.debug('item down');
-						console.debug('sudut tekan awal: ' + item.sudutTekanAwal);
-						console.debug('sudut awal: ' + item.sudutAwal);
+					// 	console.debug('item down');
+					// 	console.debug('sudut tekan awal: ' + item.sudutTekanAwal);
+					// 	console.debug('sudut awal: ' + item.sudutAwal);
 
-						return;
-					}
+					// 	return;
+					// }
 				}
 			}
 		}
 
-		inputMove(pos: any): void {
+		inputMove(pos: any, pointerId: number): void {
 			ha.Sprite.daftar.forEach((item: ISprite) => {
 
-				if (item.down && item.dragable) {
+				if (item.down && item.dragable && (item.inputId == pointerId)) {
 					item.dragged = true;
 
-					if (item.tipeDrag == 1) {
+					if (item.tipeDrag == TypeDrag.drag) {
 						item.x = pos.x - item.dragStartX
 						item.y = pos.y - item.dragStartY
 					}
-					else if (item.tipeDrag == 2) {
+					else if (item.tipeDrag == TypeDrag.rotasi) {
 						//TODO: peruban sudut
 						let sudut2: number = ha.Transform.deg(pos.x - item.x, pos.y - item.y);
 						let perbedaan: number = sudut2 - item.sudutTekanAwal;

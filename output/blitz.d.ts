@@ -10,7 +10,7 @@ declare namespace ha {
         private static _biru;
         private static _transparan;
         private static warnaBackup;
-        static kontek(spr?: ISprite): CanvasRenderingContext2D;
+        static kontek(spr?: ISprite | HTMLCanvasElement): CanvasRenderingContext2D;
         static Fps(n: number): void;
         static buatCanvas(canvasEl: HTMLCanvasElement): IGambar;
         static init(canvasBelakang: HTMLCanvasElement, canvasDepan: HTMLCanvasElement): void;
@@ -91,6 +91,9 @@ declare namespace ha {
         private _tipeDrag;
         private _sudutTekanAwal;
         private _sudutAwal;
+        private _inputId;
+        get inputId(): number;
+        set inputId(value: number);
         constructor(buffer: IGambar, dragable?: boolean);
         static copy(sprS: ISprite): ISprite;
         static statusDrag(spr: ISprite): boolean;
@@ -142,6 +145,12 @@ declare namespace ha {
         set url(value: string);
     }
 }
+declare enum EInput {
+    TOUCH = "touch",
+    MOUSE = "mouse",
+    KEYB = "keyb",
+    DEF = ""
+}
 declare namespace ha {
     class Input {
         private _inputs;
@@ -151,7 +160,7 @@ declare namespace ha {
         private _inputGlobal;
         private _event;
         constructor();
-        InputType(): string;
+        InputType(): EInput;
         InputHit(): number;
         InputX(): number;
         InputY(): number;
@@ -168,7 +177,7 @@ declare namespace ha {
         flushByType(type: string): void;
         flushByInput(input: IInput): void;
         getInput(key: string, inputType: string): IInput;
-        baru(keyId: string, inputType: string): IInput;
+        baru(keyId: string, inputType: EInput): IInput;
         pos: (cx: number, cy: number, buffer: IGambar, canvasScaleX: number, canvasScaleY: number) => {
             x: number;
             y: number;
@@ -182,7 +191,7 @@ declare namespace ha {
     }
     class EventHandler {
         move(input: IInput, buffer: IGambar, e: PointerEvent): void;
-        down(input: IInput, key: string, type: string, pos: IV2D): void;
+        down(input: IInput, key: string, type: EInput, pos: IV2D): void;
         up(input: IInput): void;
     }
     export const input: Input;
@@ -291,7 +300,7 @@ declare const GeserY: () => number;
 declare const FlushInput: () => void;
 declare const Pencet: () => boolean;
 declare const Geser: () => boolean;
-declare const InputType: () => string;
+declare const InputType: () => EInput;
 declare const FlushKeys: () => void;
 declare const GetKey: () => string;
 declare const KeybDiPencet: (key?: string) => boolean;
@@ -362,7 +371,7 @@ interface IInput {
     isTap: boolean;
     hit: number;
     key: string;
-    type: string;
+    type: EInput;
     timerStart: number;
     timerEnd: number;
     id: number;
@@ -409,11 +418,12 @@ interface ISprite {
     tipeDrag: number;
     sudutTekanAwal: number;
     sudutAwal: number;
+    inputId: number;
 }
 declare namespace ha {
     class Sprite2 {
-        inputDown(pos: any): void;
-        inputMove(pos: any): void;
+        inputDown(pos: any, id: number): void;
+        inputMove(pos: any, pointerId: number): void;
         inputUp(): void;
     }
     export const sprite2: Sprite2;

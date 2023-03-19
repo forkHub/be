@@ -1,10 +1,14 @@
 @echo off
 
+call publis_dasar.bat
+if ERRORLEVEL 1 goto error
+
 echo collision:
 echo ==========
 cd collision
 cd
 call publis.bat
+if ERRORLEVEL 1 goto error
 cd ..
 echo. 
 
@@ -13,6 +17,7 @@ echo =======
 cd doodle
 cd
 call publis.bat
+if ERRORLEVEL 1 goto error
 cd ..
 echo. 
 
@@ -21,6 +26,7 @@ echo ======
 cd drag02
 cd
 call publis.bat
+if ERRORLEVEL 1 goto error
 cd ..
 echo. 
 
@@ -29,6 +35,7 @@ echo =====
 cd expl
 cd
 call publis.bat
+if ERRORLEVEL 1 goto error
 cd ..
 echo. 
 
@@ -37,6 +44,7 @@ echo ====
 cd jam
 cd
 call publis.bat
+if ERRORLEVEL 1 goto error
 cd ..
 echo. 
 
@@ -45,6 +53,7 @@ echo =====
 cd knob
 cd
 call publis.bat
+if ERRORLEVEL 1 goto error
 cd ..
 echo. 
 
@@ -53,6 +62,7 @@ echo =======
 cd knob02
 cd
 call publis.bat
+if ERRORLEVEL 1 goto error
 cd ..
 echo. 
 
@@ -61,6 +71,7 @@ echo ======
 cd orbit
 cd
 call publis.bat
+if ERRORLEVEL 1 goto error
 cd ..
 echo. 
 
@@ -69,6 +80,7 @@ echo ==========
 cd orbit_04
 cd
 call publis.bat
+if ERRORLEVEL 1 goto error
 cd ..
 echo. 
 
@@ -77,6 +89,7 @@ echo ==========
 cd orbit_mbb
 cd
 call publis.bat
+if ERRORLEVEL 1 goto error
 cd ..
 echo. 
 
@@ -85,6 +98,7 @@ echo ===========
 cd orbit_oval
 cd
 call publis.bat
+if ERRORLEVEL 1 goto error
 cd ..
 echo. 
 
@@ -93,6 +107,7 @@ echo =====
 cd snow
 cd
 call publis.bat
+if ERRORLEVEL 1 goto error
 cd ..
 echo. 
 
@@ -101,6 +116,7 @@ echo =====
 cd tile
 cd
 call publis.bat
+if ERRORLEVEL 1 goto error
 cd ..
 echo. 
 
@@ -108,5 +124,17 @@ echo.
 echo copy gambar:
 echo ============
 xcopy assets\*.* %STAGING%\pg\gbr /q /y
+if ERRORLEVEL 1 goto error
 
+goto end
+
+:error
+echo ERROR
+echo ERROR
+echo ERROR
 pause
+exit /b 1
+
+:end
+echo %cd%
+echo demo\publish.bat selesai

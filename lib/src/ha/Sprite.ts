@@ -18,6 +18,14 @@ namespace ha {
 		private _tipeDrag: number;
 		private _sudutTekanAwal: number;
 		private _sudutAwal: number;
+		private _inputId: number;
+
+		public get inputId(): number {
+			return this._inputId;
+		}
+		public set inputId(value: number) {
+			this._inputId = value;
+		}
 
 		constructor(buffer: IGambar, dragable: boolean = false) {
 			this.buffer = buffer;
@@ -142,9 +150,9 @@ namespace ha {
 			return ha.Sprite.buatPrivate(img, dragable, url, tipeDrag);
 		}
 
-		static muatAsync(url: string, dragable = false, tipeDrag: number = 0): ISprite {
+		static muatAsync(url: string, bisaDiDrag = false, tipeDrag: number = 0): ISprite {
 			let img: IGambar = ha.Image.muatAsync(url);
-			let spr: ISprite = ha.Sprite.buatPrivate(img, dragable, url, tipeDrag);
+			let spr: ISprite = ha.Sprite.buatPrivate(img, bisaDiDrag, url, tipeDrag);
 			return spr;
 		}
 
