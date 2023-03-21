@@ -1,1 +1,5 @@
-buat setup variable 
+demo ganti video yang baru
+gunakan url cloud buat library
+
+next:
+gunakan codepen buat demo selanjutnya

@@ -18,6 +18,14 @@ function gambarKurva() {
     ctx.beginPath();
     ctx.moveTo(PosisiX(spr1), PosisiY(spr1));
     ctx.bezierCurveTo(PosisiX(spr2), PosisiY(spr2), PosisiX(spr3), PosisiY(spr3), PosisiX(spr4), PosisiY(spr4));
+
+    //garis handle
+    ctx.moveTo(PosisiX(spr1), PosisiY(spr1));
+    ctx.lineTo(PosisiX(spr2), PosisiY(spr2));
+
+    //garis handle
+    ctx.moveTo(PosisiX(spr4), PosisiY(spr4));
+    ctx.lineTo(PosisiX(spr3), PosisiY(spr3));
     ctx.stroke();
 }
 
