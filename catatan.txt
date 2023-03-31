@@ -1,4 +1,5 @@
-demo ganti video yang baru
+
+ubah metode, gak perlu disederhanakan lagi
 gunakan url cloud buat library
 
 next:
