@@ -1,10 +1,15 @@
-Grafis(300, 300);
-let spr: ISprite = Muat("./gbr/box.png", true);
-Posisi(spr, 150, 100);
+window.onload = () => {
+	Grafis(300, 300);
+	let spr: ISprite = Muat("https://forkhub.github.io/gbr/box.png", true);
+	Posisi(spr, 150, 100);
 
-function Loop(): void {
-	Bersih();
-	Gambar(spr);
+	window.requestAnimationFrame(upate);
 
-	Tulis("Kotak ini bisa di drag", 300 / 2, 300 / 2);
-}
+	function upate(): void {
+		Bersih();
+		Gambar(spr);
+
+		Tulis("Kotak ini bisa di drag", 300 / 2, 300 / 2);
+		window.requestAnimationFrame(upate);
+	}
+};
