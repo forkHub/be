@@ -1,6 +1,0 @@
-
-ubah metode, gak perlu disederhanakan lagi
-gunakan url cloud buat library
-
-next:
-gunakan codepen buat demo selanjutnya

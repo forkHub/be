@@ -28,14 +28,7 @@ namespace ha {
 					item.sudutTekanAwal = ha.Transform.deg(pos.x - item.x, pos.y - item.y);
 					item.sudutAwal = item.buffer.rotasi;
 
-					// if (item.tipeDrag == 2) {
-
-					// 	console.debug('item down');
-					// 	console.debug('sudut tekan awal: ' + item.sudutTekanAwal);
-					// 	console.debug('sudut awal: ' + item.sudutAwal);
-
-					// 	return;
-					// }
+					return;
 				}
 			}
 		}

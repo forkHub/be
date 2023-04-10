@@ -96,7 +96,7 @@ namespace ha {
 
 		static posisiY(spr: ISprite, y: number | null | undefined = null): number {
 			if (typeof (y) == 'number') {
-				debugger;
+				// debugger;
 				spr.y = y;
 			}
 
