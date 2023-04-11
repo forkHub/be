@@ -21,7 +21,7 @@ namespace ha {
 		 * @param skalaOtomatis (boolean) apakah akan men-skala kanvas mengikuti ukuran layar  
 		 * @returns 
 		 */
-		static init(panjang: number = 320, lebar: number = 240, canvas: HTMLCanvasElement = null, skalaOtomatis: boolean = true, input: boolean = true) {
+		static Grafis(panjang: number = 320, lebar: number = 240, canvas: HTMLCanvasElement = null, skalaOtomatis: boolean = true, input: boolean = true) {
 
 			//coba cari canvas
 			if (!canvas) {
@@ -72,7 +72,7 @@ namespace ha {
 				//font default
 				ha.Teks.font("12px sans-serif");
 				ha.Teks.rata("center");
-				ha.Main.warna(255, 255, 255, 100);
+				ha.Main.Warna(255, 255, 255, 100);
 				ha.Main.canvasAktif.ctx.strokeStyle = "#ffffff";
 			}
 		}

@@ -22,7 +22,7 @@ namespace ha {
 		//TODOL ganti agar bisa gonta-ganti kontek
 		//parameternya adalah sprite/canvas/kontex
 		//tujuannya agar bisa diedit langsung oleh perintah kontek yang lain
-		static kontek(spr?: ISprite | HTMLCanvasElement): CanvasRenderingContext2D {
+		static Kontek(spr?: ISprite | HTMLCanvasElement): CanvasRenderingContext2D {
 			let spr2: ISprite = spr as ISprite;
 			if (spr2 && spr2.buffer && spr2.buffer.ctx) {
 				return spr2.buffer.ctx;
@@ -103,7 +103,7 @@ namespace ha {
 			ha.Main.restoreWarna();
 		}
 
-		static warna(r: number = 0, g: number = 0, b: number = 0, a: number = 100): void {
+		static Warna(r: number = 0, g: number = 0, b: number = 0, a: number = 100): void {
 			let h = ha.Main;
 
 			h.merah = r;

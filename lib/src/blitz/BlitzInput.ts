@@ -1,10 +1,10 @@
 ///<reference path="./Route.ts"/>
 
-/*
+/**  
+ * shortcut buat perintah input 
  * BLITZ-INPUT.TS
  */
 
-//TODO: dipindah 
 const InputHit = ha.input.InputHit;
 const InputX = ha.input.InputX;
 const InputY = ha.input.InputY;
@@ -16,7 +16,7 @@ const Geser = ha.input.Geser;
 const InputType = ha.input.InputType;
 
 /**
- * 	KEYBOARD (di tunda)
+ * 	KEYBOARD (di tunda/dihapus)
  */
 const FlushKeys = () => {
 	ha.input.flushByInput(ha.input.keybGlobal);

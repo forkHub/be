@@ -399,7 +399,7 @@ namespace ha {
 			gbr.rotasi = sudut;
 		}
 
-		static ambilPiksel(x: number = 0, y: number = 0): number[] {
+		static AmbilPiksel(x: number = 0, y: number = 0): number[] {
 			try {
 				let data: Uint8ClampedArray = ha.Main.canvasAktif.ctx.getImageData(x, y, 1, 1).data;
 
@@ -414,7 +414,7 @@ namespace ha {
 				ha.Main.hijau = data[1];
 				ha.Main.biru = data[2];
 				ha.Main.transparan = data[3];
-				ha.Main.warna(ha.Main.merah, ha.Main.hijau, ha.Main.biru, ha.Main.transparan);
+				ha.Main.Warna(ha.Main.merah, ha.Main.hijau, ha.Main.biru, ha.Main.transparan);
 
 				return hasil;
 			}
@@ -425,7 +425,7 @@ namespace ha {
 			return [0, 0, 0];
 		}
 
-		static setPiksel(x: number = 0, y: number = 0) {
+		static SetPiksel(x: number = 0, y: number = 0) {
 			ha.Main.canvasAktif.ctx.fillRect(Math.floor(x), Math.floor(y), 1, 1);
 		}
 
