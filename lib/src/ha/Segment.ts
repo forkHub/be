@@ -1,4 +1,8 @@
 namespace ha.be {
+	/**
+	 * internal class untuk menghandle geometri:
+	 * garis
+	 */
 	export class Segment {
 
 		static create(v1: IPoint2D = { x: 0, y: 0 }, v2: IPoint2D = { x: 0, y: 0 }): ISegment {
@@ -74,7 +78,7 @@ namespace ha.be {
 			let j: number = line.v2.y - line.v1.y;
 			let i: number = line.v2.x - line.v1.x;
 
-			return ha.Transform.deg(i, j);
+			return ha.Transform.sudut(i, j);
 		}
 
 		static getXAtIdx(seg: ISegment, idx: number): number {

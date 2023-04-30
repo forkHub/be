@@ -1,4 +1,8 @@
 namespace ha.be {
+	/** internal class untuk menghandle geometri 
+	 * Kotak
+	 * 
+	 */
 	export class Rect {
 
 		static create(x1: number = 0, y1: number = 0, x2: number = 0, y2: number = 0): IRect {
@@ -18,7 +22,7 @@ namespace ha.be {
 			return r;
 		}
 
-		static copy(r: IRect): IRect {
+		private static copy(r: IRect): IRect {
 			// console.log('copy:');
 			// console.log(r.vs);
 
@@ -31,13 +35,13 @@ namespace ha.be {
 			return hasil;
 		}
 
-		static copyInfo(r1: IRect, r2: IRect): void {
+		private static copyInfo(r1: IRect, r2: IRect): void {
 			for (let i: number = 0; i < r1.segs.length; i++) {
 				Segment.copy(r1.segs[i], r2.segs[i]);
 			}
 		}
 
-		static collideBound(r1: IRect, r2: IRect): boolean {
+		private static collideBound(r1: IRect, r2: IRect): boolean {
 			// console.debug('collide bound');
 
 			if (Rect.maxX(r1) < Rect.minX(r2)) {
@@ -81,7 +85,7 @@ namespace ha.be {
 			return false;
 		}
 
-		static collideDotBound(r: IRect, d: IPoint2D): boolean {
+		private static collideDotBound(r: IRect, d: IPoint2D): boolean {
 			if (d.x < Rect.minX(r)) {
 				// console.log('minx failed');
 				return false;
@@ -132,7 +136,7 @@ namespace ha.be {
 			return true;
 		}
 
-		static minX(r: IRect): number {
+		private static minX(r: IRect): number {
 			let x: number = r.vs[0].x;
 
 			r.vs.forEach((item: IPoint2D) => {
@@ -142,7 +146,7 @@ namespace ha.be {
 			return x;
 		}
 
-		static maxX(r: IRect): number {
+		private static maxX(r: IRect): number {
 			let x: number = r.vs[0].x;
 
 			r.vs.forEach((item: IPoint2D) => {
@@ -152,7 +156,7 @@ namespace ha.be {
 			return x;
 		}
 
-		static minY(r: IRect): number {
+		private static minY(r: IRect): number {
 			let y: number = r.vs[0].y;
 
 			r.vs.forEach((item: IPoint2D) => {
@@ -162,7 +166,7 @@ namespace ha.be {
 			return y;
 		}
 
-		static maxY(r: IRect): number {
+		private static maxY(r: IRect): number {
 			let y: number = r.vs[0].y;
 
 			r.vs.forEach((item: IPoint2D) => {
@@ -199,7 +203,6 @@ namespace ha.be {
 
 			return r2;
 		}
-
 
 	}
 

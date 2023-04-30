@@ -8,4 +8,4 @@ BE dibuat dengan bahasa pemrograman typescript
 <a href="https://forkhub.github.io/js/blitz.js">blitz.js</a><br />
 <a href="https://forkhub.github.io/js/blitz.d.ts">blitz.d.ts</a><br />
 
-[Demo](demo.md)
+[Demo](https://github.com/forkHub/be/tree/main/demo)

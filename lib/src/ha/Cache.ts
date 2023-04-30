@@ -1,4 +1,8 @@
 namespace ha.be {
+
+	/**
+	 * Cache image yang diload
+	 */
 	class Cache {
 		private files: ICache[] = [];
 

@@ -1,7 +1,9 @@
 ///<reference path="./Route.ts"/>
 
-/** BLITZ-SPRITE.TS */
-// const Buat = ha.Sprite.buat;
+/** 
+ * Shortcut untuk perintah-perintah Sprite 
+ * */
+
 const Muat = ha.Sprite.muatAsync;
 const MuatAnimasi = ha.Sprite.muatAnimasiAsync;
 const StatusMuat = ha.Sprite.statusMuat;

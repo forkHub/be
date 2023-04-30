@@ -9,6 +9,5 @@
 ///<reference path="../ha/Transform.ts"/>
 ///<reference path="../ha/Teks.ts"/>
 ///<reference path="../ha/Route.ts"/>
-
-
-
+///<reference path="../ha/Sprite2.ts"/>
+///<reference path="../ha/Cache.ts"/>

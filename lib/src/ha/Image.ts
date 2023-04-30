@@ -24,11 +24,16 @@ namespace ha.be {
 			return this._rotasi;
 		}
 		public set rotasi(value: number) {
-			console.debug('set value: ' + value);
+			// console.debug('set value: ' + value);
 			this._rotasi = value;
 		}
 	}
 
+	/**
+	 * Menghandle Image object
+	 * Tidak untuk dipakai langsung
+	 * Image object akan di wrap oleh Sprite 
+	 */
 	export class Image {
 		// private static buatObj(
 		// 	img: HTMLImageElement,
@@ -249,7 +254,7 @@ namespace ha.be {
 			}
 
 			img.onerror = () => {
-				console.log('gagal load image, url ' + url);
+				console.warn('gagal load image, url ' + url);
 				//TODO: default image
 			}
 
@@ -262,7 +267,7 @@ namespace ha.be {
 			}
 
 			function imgOnLoad(img: HTMLImageElement) {
-				console.log('img anim load ' + url);
+				// console.log('img anim load ' + url);
 				canvas.width = img.naturalWidth;
 				canvas.height = img.naturalHeight;
 				ctx.drawImage(img, 0, 0);
@@ -323,7 +328,7 @@ namespace ha.be {
 			}
 
 			img.onerror = () => {
-				console.log('gagal load image, url ' + url);
+				console.warn('gagal load image, url ' + url);
 				//TODO: default image
 			}
 
@@ -399,6 +404,12 @@ namespace ha.be {
 			gbr.rotasi = sudut;
 		}
 
+		/**
+		 * mengambil pixel di layar
+		 * @param x posisi x
+		 * @param y posisi y
+		 * @returns (Uint8ClampedArray) 
+		 */
 		static AmbilPiksel(x: number = 0, y: number = 0): number[] {
 			try {
 				let data: Uint8ClampedArray = Main.canvasAktif.ctx.getImageData(x, y, 1, 1).data;

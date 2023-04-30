@@ -1,27 +1,29 @@
-/**
- * BLIJS
- */
+
 
 namespace ha.be {
+
+	/**
+	 * Depecreated dan akan digabung ke Main
+	 * */
 	export class Blijs {
 		private static _skalaOtomatis: boolean = true;
-		private static _inputStatus: boolean = true;
-		public static get inputStatus(): boolean {
-			return Blijs._inputStatus;
-		}
-		public static set inputStatus(value: boolean) {
-			Blijs._inputStatus = value;
-		}
+		// private static _inputStatus: boolean = true;
+		// public static get inputStatus(): boolean {
+		// 	return Blijs._inputStatus;
+		// }
+		// public static set inputStatus(value: boolean) {
+		// 	Blijs._inputStatus = value;
+		// }
 
 		/**
 		 * Setup Blitz Edu
 		 * @param panjang (angka) panjang dari kanvas
 		 * @param lebar (angka) lebar dari kanvs
 		 * @param canvas (HTMLCanvasElement) referensi ke kanvas
-		 * @param skalaOtomatis (boolean) apakah akan men-skala kanvas mengikuti ukuran layar  
+		 * @param fullScreen (boolean) apakah akan men-skala kanvas mengikuti ukuran layar/fullscreen  
 		 * @returns 
 		 */
-		static Grafis(panjang: number = 320, lebar: number = 240, canvas: HTMLCanvasElement = null, skalaOtomatis: boolean = true, input: boolean = true) {
+		static Grafis(panjang: number = 320, lebar: number = 240, canvas: HTMLCanvasElement = null, fullScreen: boolean = true, input: boolean = true) {
 
 			//coba cari canvas
 			if (!canvas) {
@@ -32,8 +34,8 @@ namespace ha.be {
 				document.body.appendChild(document.createElement('canvas'));
 			}
 
-			ha.be.Blijs.skalaOtomatis = skalaOtomatis;
-			ha.be.Blijs._inputStatus = input
+			ha.be.Blijs.skalaOtomatis = fullScreen;
+			// ha.be.Blijs._inputStatus = input
 
 			//sudah diinisialisasi atau belum
 			if (ha.be.Main.canvasAktif) {
@@ -67,9 +69,9 @@ namespace ha.be {
 					}
 				}, 100);
 
-				setTimeout(() => {
-					ha.be.Blijs.repeat();
-				}, 0);
+				// setTimeout(() => {
+				// 	ha.be.Blijs.repeat();
+				// }, 0);
 
 				//font default
 				ha.be.Teks.font("12px sans-serif");
@@ -79,34 +81,39 @@ namespace ha.be {
 			}
 		}
 
-		static loop(): void {
-			let _window: any = window;
-			if (typeof (_window.Loop) == 'function') {
-				//TODO: pre loop
-				_window.Loop();
-				//TODO: post loop
-			}
-			else if (typeof (_window.Update) == 'function') {
-				//TODO: pre loop
-				_window.Update();
-				//TODO: post loop
+		/** depecreated */
+		// static loop(): void {
+		// 	let _window: any = window;
+		// 	if (typeof (_window.Loop) == 'function') {
+		// 		//TODO: pre loop
+		// 		_window.Loop();
+		// 		//TODO: post loop
+		// 	}
+		// 	else if (typeof (_window.Update) == 'function') {
+		// 		//TODO: pre loop
+		// 		_window.Update();
+		// 		//TODO: post loop
 
-			}
-		}
+		// 	}
+		// }
 
-		static repeat() {
-			//check semua image sudah diload
+		/** depecreated */
+		// static repeat() {
+		// 	//check semua image sudah diload
 
-			ha.be.Blijs.loop();
+		// 	ha.be.Blijs.loop();
 
-			setTimeout(() => {
-				// requestAnimationFrame(() => {
-				// 	ha.be.Blijs.repeat();
-				// });
-				requestAnimationFrame(ha.be.Blijs.repeat);
-			}, ha.be.Main.fps);
-		}
+		// 	setTimeout(() => {
+		// 		// requestAnimationFrame(() => {
+		// 		// 	ha.be.Blijs.repeat();
+		// 		// });
+		// 		requestAnimationFrame(ha.be.Blijs.repeat);
+		// 	}, ha.be.Main.fps);
+		// }
 
+		/**
+		 * Handle saat window di resize
+		 */
 		static windowResize(): void {
 			// console.debug('window on resize');
 			let canvas: HTMLCanvasElement = ha.be.Main.canvasAktif.canvas;

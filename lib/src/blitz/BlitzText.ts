@@ -1,7 +1,7 @@
 ///<reference path="../ha/Route.ts"/>
 
 /**
- * TEXTS
+ * Shortcut buat perintah-perintah font
  */
 var Font = ha.be.Teks.font;
 var Tulis = ha.be.Teks.tulis;

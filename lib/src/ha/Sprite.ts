@@ -1,7 +1,10 @@
 ///<reference path="./Image.ts"/>
 
-/** SPRITE.TS */
 namespace ha {
+	/** 
+	 * Sprite 
+	 * Wrapper dari image agar bisa interaksi
+	*/
 	export class Sprite implements ISprite {
 		static readonly daftar: ISprite[] = [];
 

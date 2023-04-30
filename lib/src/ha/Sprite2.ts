@@ -4,7 +4,10 @@ namespace ha {
 		rotasi = 2
 	}
 
-	class Sprite2 {
+	/**
+	 * handle untuk interaksi sprite
+	 */
+	class SpriteInteraksi {
 		inputDown(pos: any, id: number): void {
 			console.debug('input down');
 
@@ -25,7 +28,7 @@ namespace ha {
 					item.dragStartY = pos.y - item.y;
 					item.inputId = id;
 
-					item.sudutTekanAwal = ha.Transform.deg(pos.x - item.x, pos.y - item.y);
+					item.sudutTekanAwal = ha.Transform.sudut(pos.x - item.x, pos.y - item.y);
 					item.sudutAwal = item.buffer.rotasi;
 
 					return;
@@ -45,7 +48,7 @@ namespace ha {
 					}
 					else if (item.tipeDrag == TypeDrag.rotasi) {
 						//TODO: peruban sudut
-						let sudut2: number = ha.Transform.deg(pos.x - item.x, pos.y - item.y);
+						let sudut2: number = ha.Transform.sudut(pos.x - item.x, pos.y - item.y);
 						let perbedaan: number = sudut2 - item.sudutTekanAwal;
 						item.buffer.rotasi = item.sudutAwal + perbedaan;
 
@@ -75,5 +78,5 @@ namespace ha {
 		}
 	}
 
-	export const sprite2: Sprite2 = new Sprite2();
+	export const sprInteraksi: SpriteInteraksi = new SpriteInteraksi();
 }

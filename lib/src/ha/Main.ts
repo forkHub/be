@@ -1,8 +1,8 @@
 namespace ha.be {
 
 	export class Main {
-		private static _fps: number = 0;
-		private static _origin: IV2D;
+		// private static _fps: number = 0;
+		// private static _origin: IV2D;
 		private static _canvasAr: IGambar[] = [];
 		private static _canvasAktif: IGambar;
 		private static _skalaOtomatis: boolean = true;
@@ -36,12 +36,12 @@ namespace ha.be {
 			return Main.canvasAktif.ctx;
 		}
 
-		static Fps(n: number) {
-			Main.fps = Math.floor(1000 / n);
-			if (n >= 60) {
-				Main.fps = 0;
-			}
-		}
+		// static Fps(n: number) {
+		// 	Main.fps = Math.floor(1000 / n);
+		// 	if (n >= 60) {
+		// 		Main.fps = 0;
+		// 	}
+		// }
 
 		static buatCanvas(canvasEl: HTMLCanvasElement): IGambar {
 			let canvas: IGambar = {
@@ -95,6 +95,13 @@ namespace ha.be {
 			Main.updateStyleWarna();
 		}
 
+		/**
+		 * Membersihkan layar dengan warna tertentu, default hitam
+		 * @param m (number) merah
+		 * @param h (number) hijau
+		 * @param b (b) biru
+		 * @param t (t) transparan (0-100)
+		 */
 		static Bersih(m: number = 0, h: number = 0, b: number = 0, t: number = 100): void {
 			let ctx: CanvasRenderingContext2D = Main.canvasAktif.ctx;
 			Main.backupWarna();
@@ -103,6 +110,13 @@ namespace ha.be {
 			Main.restoreWarna();
 		}
 
+		/**
+		 * Mengeset warna untuk dipakai pada perintah menggambar setelahnya
+		 * @param r (number) merah
+		 * @param g (number) hijau
+		 * @param b (number) biru
+		 * @param a (number) alpha (0-100)
+		 */
 		static Warna(r: number = 0, g: number = 0, b: number = 0, a: number = 100): void {
 			let h = Main;
 
@@ -118,14 +132,26 @@ namespace ha.be {
 			ctx.fillStyle = `rgba(${Main.merah}, ${Main.hijau}, ${Main.biru}, ${Main.transparan})`;
 		}
 
+		/**
+		 * Mengembalikan warna merah dari perintah AmbilPixel terakhir
+		 * @returns (number) warna merah
+		 */
 		static Hijau(): number {
 			return Main.hijau;
 		}
 
+		/**
+		 * Mengembalikan warna merah dari perintah AmbilPixel terakhir
+		 * @returns (number) warna merah
+		 */
 		static Merah(): number {
 			return Main.merah;
 		}
 
+		/**
+		 * Mengembalikan warna biru dari perintah AmbilPixel terakhir
+		 * @returns (number) warna biru
+		 */
 		static Biru(): number {
 			return Main.biru;
 		}
@@ -150,8 +176,6 @@ namespace ha.be {
 				canvas.canvas.style.padding = '0px';
 				canvas.canvas.style.margin = '0px';
 			}
-
-			//TODO: coba di check
 
 			canvas.panjang = p;
 			canvas.lebar = l;
@@ -248,9 +272,9 @@ namespace ha.be {
 
 		}
 
-		static SetBuffer(buffer: IGambar) {
-			Main.canvasAktif = buffer
-		}
+		// static SetBuffer(buffer: IGambar) {
+		// 	Main.canvasAktif = buffer
+		// }
 
 		public static get canvasAktif(): IGambar {
 			return Main._canvasAktif;
@@ -267,21 +291,21 @@ namespace ha.be {
 			Main._canvasAr = value;
 		}
 
-		public static get origin(): IV2D {
-			return Main._origin;
-		}
+		// public static get origin(): IV2D {
+		// 	return Main._origin;
+		// }
 
-		public static set origin(value: IV2D) {
-			Main._origin = value;
-		}
+		// public static set origin(value: IV2D) {
+		// 	Main._origin = value;
+		// }
 
-		public static get fps(): number {
-			return Main._fps;
-		}
+		// public static get fps(): number {
+		// 	return Main._fps;
+		// }
 
-		public static set fps(value: number) {
-			Main._fps = value;
-		}
+		// public static set fps(value: number) {
+		// 	Main._fps = value;
+		// }
 
 		public static get skalaOtomatis(): boolean {
 			return Main._skalaOtomatis;

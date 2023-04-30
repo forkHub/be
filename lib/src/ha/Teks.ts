@@ -13,6 +13,14 @@ namespace ha.be {
 			Teks.ctx.textAlign = rata;
 		}
 
+		/**
+		 * menulis teks di kanvas
+		 * @param teks (string)
+		 * @param x (number)
+		 * @param y (number)
+		 * @param warna (boolean=true) apakah akan mengisi teks dengan warna
+		 * @param garis (boolean=false) apakah akan menggunakan outline
+		 */
 		static tulis(teks: string, x: number, y: number, warna: boolean = true, garis: boolean = false): void {
 
 			if (warna) {

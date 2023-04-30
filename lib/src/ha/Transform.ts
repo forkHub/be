@@ -57,7 +57,13 @@ namespace ha {
 			throw Error();
 		}
 
-		static deg(x: number, y: number): number {
+		/**
+		 * Menghitung sudut dari posisi relative ke posisi 0,0
+		 * @param x posisi x
+		 * @param y posisi y
+		 * @returns sudut relative ke posisi 0,0
+		 */
+		static sudut(x: number, y: number): number {
 			let l: number;
 			let sin: number;
 

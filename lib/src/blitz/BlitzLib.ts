@@ -1,7 +1,7 @@
 ///<reference path="./Route.ts"/>
 
-/*
- * 	GRAPHICS
+/**
+ * 	Shortcut untuk perintah-perintah utama
  */
 const Bersih = ha.be.Main.Bersih;
 

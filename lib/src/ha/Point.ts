@@ -1,4 +1,8 @@
 namespace ha.be {
+	/** internal class untuk menghandle geometri 
+	 * Point
+	 * 
+	 */
 	export class Point {
 
 		static create(x: number = 0, y: number = 0): IPoint2D {
