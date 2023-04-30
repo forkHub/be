@@ -18,7 +18,7 @@ namespace ha {
 
 				item = ha.Sprite.daftar[i];
 
-				if (ha.Image.dotDidalamGambar(item.buffer, item.x, item.y, pos.x, pos.y)) {
+				if (ha.be.Image.dotDidalamGambar(item.buffer, item.x, item.y, pos.x, pos.y)) {
 
 					item.down = true;
 					item.dragStartX = pos.x - item.x;

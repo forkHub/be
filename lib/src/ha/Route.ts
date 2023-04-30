@@ -1,4 +1,4 @@
-namespace ha {
+namespace ha.be {
 	export class Route {
 		static ukuran(obj: ISprite | "teks", w: number = 32, h: number = 32): void {
 			if ("teks" == obj) {

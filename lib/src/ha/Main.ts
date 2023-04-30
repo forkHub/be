@@ -1,4 +1,4 @@
-namespace ha {
+namespace ha.be {
 
 	export class Main {
 		private static _fps: number = 0;
@@ -33,13 +33,13 @@ namespace ha {
 				return spr3.getContext('2d');
 			}
 
-			return ha.Main.canvasAktif.ctx;
+			return Main.canvasAktif.ctx;
 		}
 
 		static Fps(n: number) {
-			ha.Main.fps = Math.floor(1000 / n);
+			Main.fps = Math.floor(1000 / n);
 			if (n >= 60) {
-				ha.Main.fps = 0;
+				Main.fps = 0;
 			}
 		}
 
@@ -59,7 +59,7 @@ namespace ha {
 				isAnim: false,
 				rotasi: 0,
 				alpha: 1,
-				rect: ha.Rect.create(),
+				rect: Rect.create(),
 				load: true,
 				panjangDiSet: true,
 				lebarDiSet: true,
@@ -71,40 +71,40 @@ namespace ha {
 		}
 
 		static init(canvasBelakang: HTMLCanvasElement, canvasDepan: HTMLCanvasElement): void {
-			let canvas: IGambar = ha.Main.buatCanvas(canvasBelakang);
-			ha.Main._canvasAr.push(canvas);
+			let canvas: IGambar = Main.buatCanvas(canvasBelakang);
+			Main._canvasAr.push(canvas);
 
-			canvas = ha.Main.buatCanvas(canvasDepan);
-			ha.Main._canvasAr.push(canvas);
+			canvas = Main.buatCanvas(canvasDepan);
+			Main._canvasAr.push(canvas);
 
-			ha.Main.canvasAktif = canvas;
+			Main.canvasAktif = canvas;
 		}
 
 		static backupWarna(): void {
-			ha.Main.warnaBackup.b = ha.Main.biru;
-			ha.Main.warnaBackup.h = ha.Main.hijau;
-			ha.Main.warnaBackup.m = ha.Main.merah;
-			ha.Main.warnaBackup.t = ha.Main.transparan;
+			Main.warnaBackup.b = Main.biru;
+			Main.warnaBackup.h = Main.hijau;
+			Main.warnaBackup.m = Main.merah;
+			Main.warnaBackup.t = Main.transparan;
 		}
 
 		static restoreWarna(): void {
-			ha.Main.biru = ha.Main.warnaBackup.b;
-			ha.Main.hijau = ha.Main.warnaBackup.h;
-			ha.Main.merah = ha.Main.warnaBackup.m;
-			ha.Main.transparan = ha.Main.warnaBackup.t;
-			ha.Main.updateStyleWarna();
+			Main.biru = Main.warnaBackup.b;
+			Main.hijau = Main.warnaBackup.h;
+			Main.merah = Main.warnaBackup.m;
+			Main.transparan = Main.warnaBackup.t;
+			Main.updateStyleWarna();
 		}
 
 		static Bersih(m: number = 0, h: number = 0, b: number = 0, t: number = 100): void {
-			let ctx: CanvasRenderingContext2D = ha.Main.canvasAktif.ctx;
-			ha.Main.backupWarna();
+			let ctx: CanvasRenderingContext2D = Main.canvasAktif.ctx;
+			Main.backupWarna();
 			ctx.fillStyle = `rgba(${m}, ${h}, ${b}, ${t / 100})`;
-			ctx.fillRect(0, 0, ha.Main.canvasAktif.panjang, ha.Main.canvasAktif.lebar);
-			ha.Main.restoreWarna();
+			ctx.fillRect(0, 0, Main.canvasAktif.panjang, Main.canvasAktif.lebar);
+			Main.restoreWarna();
 		}
 
 		static Warna(r: number = 0, g: number = 0, b: number = 0, a: number = 100): void {
-			let h = ha.Main;
+			let h = Main;
 
 			h.merah = r;
 			h.biru = b;
@@ -114,43 +114,51 @@ namespace ha {
 		}
 
 		private static updateStyleWarna(): void {
-			let ctx: CanvasRenderingContext2D = ha.Main.canvasAktif.ctx;
-			ctx.fillStyle = `rgba(${ha.Main.merah}, ${ha.Main.hijau}, ${ha.Main.biru}, ${ha.Main.transparan})`;
+			let ctx: CanvasRenderingContext2D = Main.canvasAktif.ctx;
+			ctx.fillStyle = `rgba(${Main.merah}, ${Main.hijau}, ${Main.biru}, ${Main.transparan})`;
 		}
 
 		static Hijau(): number {
-			return ha.Main.hijau;
+			return Main.hijau;
 		}
 
 		static Merah(): number {
-			return ha.Main.merah;
+			return Main.merah;
 		}
 
 		static Biru(): number {
-			return ha.Main.biru;
+			return Main.biru;
 		}
 
 		static Transparan(): number {
-			return Math.floor(ha.Main.transparan * 100);
+			return Math.floor(Main.transparan * 100);
 		}
 
-		static Grafis(p: number = 320, l: number = 240): void {
-			let canvas: IGambar = ha.Main.canvasAktif;
+		static Kanvas(): HTMLCanvasElement {
+			return Main.canvasAktif.canvas;
+		}
+
+		static Grafis(p: number = 320, l: number = 240, ubahStyle: boolean): void {
+			let canvas: IGambar = Main.canvasAktif;
 
 			canvas.canvas.width = p;
 			canvas.canvas.height = l;
-			canvas.canvas.style.width = p + 'px';
-			canvas.canvas.style.height = l + 'px';
-			canvas.canvas.style.padding = '0px';
-			canvas.canvas.style.margin = '0px';
-			canvas.canvas.style.touchAction = 'none';
+
+			if (ubahStyle) {
+				canvas.canvas.style.width = p + 'px';
+				canvas.canvas.style.height = l + 'px';
+				canvas.canvas.style.padding = '0px';
+				canvas.canvas.style.margin = '0px';
+			}
+
+			//TODO: coba di check
 
 			canvas.panjang = p;
 			canvas.lebar = l;
 
 			setTimeout(() => {
-				if (ha.Blijs.skalaOtomatis) {
-					ha.Blijs.windowResize();
+				if (Blijs.skalaOtomatis) {
+					Blijs.windowResize();
 				}
 				else {
 
@@ -158,21 +166,21 @@ namespace ha {
 			}, 0);
 
 			// if (canvas2) {
-			// 	ha.Main.canvasAktif.canvas.classList.add('gl');
+			// 	Main.canvasAktif.canvas.classList.add('gl');
 			// }
 			// else {
-			// 	ha.Main.canvasAktif.canvas.classList.remove('gl');
+			// 	Main.canvasAktif.canvas.classList.remove('gl');
 			// }
 
 			// if (skalaOtomatis) {
-			// 	ha.Main.canvasAktif.canvas.classList.add('pixel');
+			// 	Main.canvasAktif.canvas.classList.add('pixel');
 			// }
 
 			// ha_blitz.Main.windowResize();
 		}
 
 		static Garis(x1: number, y1: number, x2: number, y2: number) {
-			let ctx: CanvasRenderingContext2D = ha.Main.canvasAktif.ctx;
+			let ctx: CanvasRenderingContext2D = Main.canvasAktif.ctx;
 
 			x1 = Math.floor(x1);
 			y1 = Math.floor(y1);
@@ -187,7 +195,7 @@ namespace ha {
 
 		//kotak
 		static Kotak(x1: number, y1: number, x2: number, y2: number, isi: boolean = false, garis: boolean = true, rotasi: number = 0) {
-			let ctx: CanvasRenderingContext2D = ha.Main.canvasAktif.ctx;
+			let ctx: CanvasRenderingContext2D = Main.canvasAktif.ctx;
 
 			//TODO: rotasi
 			rotasi;
@@ -202,7 +210,7 @@ namespace ha {
 		}
 
 		static Oval(x: number = 0, y: number = 0, radius: number, skalaX: number = 1, skalaY = .5, rotasi: number = 0) {
-			let ctx: CanvasRenderingContext2D = ha.Main.canvasAktif.ctx;
+			let ctx: CanvasRenderingContext2D = Main.canvasAktif.ctx;
 
 			// save state
 			ctx.save();
@@ -241,38 +249,38 @@ namespace ha {
 		}
 
 		static SetBuffer(buffer: IGambar) {
-			ha.Main.canvasAktif = buffer
+			Main.canvasAktif = buffer
 		}
 
 		public static get canvasAktif(): IGambar {
-			return ha.Main._canvasAktif;
+			return Main._canvasAktif;
 		}
 
 		public static set canvasAktif(value: IGambar) {
-			ha.Main._canvasAktif = value;
+			Main._canvasAktif = value;
 		}
 
 		public static get canvasAr(): IGambar[] {
-			return ha.Main._canvasAr;
+			return Main._canvasAr;
 		}
 		public static set canvasAr(value: IGambar[]) {
-			ha.Main._canvasAr = value;
+			Main._canvasAr = value;
 		}
 
 		public static get origin(): IV2D {
-			return ha.Main._origin;
+			return Main._origin;
 		}
 
 		public static set origin(value: IV2D) {
-			ha.Main._origin = value;
+			Main._origin = value;
 		}
 
 		public static get fps(): number {
-			return ha.Main._fps;
+			return Main._fps;
 		}
 
 		public static set fps(value: number) {
-			ha.Main._fps = value;
+			Main._fps = value;
 		}
 
 		public static get skalaOtomatis(): boolean {

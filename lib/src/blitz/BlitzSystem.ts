@@ -1,3 +1,3 @@
 ///<reference path="./Route.ts"/>
 
-const FPS = ha.Main.Fps;
+const FPS = ha.be.Main.Fps;

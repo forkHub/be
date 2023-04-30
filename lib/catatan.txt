@@ -1,3 +1,6 @@
+geom diberi namespace be
+yang lain diberi namespace be juga
+
 dokumentasi statusMuat()
 
 ctx.font = 'bold 10px Arial';

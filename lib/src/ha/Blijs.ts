@@ -2,7 +2,7 @@
  * BLIJS
  */
 
-namespace ha {
+namespace ha.be {
 	export class Blijs {
 		private static _skalaOtomatis: boolean = true;
 		private static _inputStatus: boolean = true;
@@ -32,48 +32,50 @@ namespace ha {
 				document.body.appendChild(document.createElement('canvas'));
 			}
 
-			ha.Blijs.skalaOtomatis = skalaOtomatis;
-			ha.Blijs._inputStatus = input
+			ha.be.Blijs.skalaOtomatis = skalaOtomatis;
+			ha.be.Blijs._inputStatus = input
 
 			//sudah diinisialisasi atau belum
-			if (ha.Main.canvasAktif) {
+			if (ha.be.Main.canvasAktif) {
 				console.warn('init lebih dari sekali');
-				ha.Main.Grafis(panjang, lebar);
+				ha.be.Main.Grafis(panjang, lebar, ha.be.Blijs.skalaOtomatis);
 			}
 			else {
 				console.log('inisialisasi');
-				ha.Main.init(canvas, canvas);
-				ha.Main.Grafis(panjang, lebar);
+				ha.be.Main.init(canvas, canvas);
+				ha.be.Main.Grafis(panjang, lebar, ha.be.Blijs.skalaOtomatis);
 
 				if (input) {
-					ha.input.init(ha.Main.canvasAktif);
+					ha.be.input.init(ha.be.Main.canvasAktif);
 				}
 
-				window.onresize = (): void => {
-					if (ha.Blijs.skalaOtomatis) {
-						ha.Blijs.windowResize();
+				if (ha.be.Blijs.skalaOtomatis) {
+					window.onresize = (): void => {
+						if (ha.be.Blijs.skalaOtomatis) {
+							ha.be.Blijs.windowResize();
+						}
 					}
 				}
 
-				if (ha.Blijs.skalaOtomatis) {
-					ha.Blijs.windowResize();
+				if (ha.be.Blijs.skalaOtomatis) {
+					ha.be.Blijs.windowResize();
 				}
 
 				setTimeout(() => {
-					if (ha.Blijs.skalaOtomatis) {
-						ha.Blijs.windowResize();
+					if (ha.be.Blijs.skalaOtomatis) {
+						ha.be.Blijs.windowResize();
 					}
 				}, 100);
 
 				setTimeout(() => {
-					ha.Blijs.repeat();
+					ha.be.Blijs.repeat();
 				}, 0);
 
 				//font default
-				ha.Teks.font("12px sans-serif");
-				ha.Teks.rata("center");
-				ha.Main.Warna(255, 255, 255, 100);
-				ha.Main.canvasAktif.ctx.strokeStyle = "#ffffff";
+				ha.be.Teks.font("12px sans-serif");
+				ha.be.Teks.rata("center");
+				ha.be.Main.Warna(255, 255, 255, 100);
+				ha.be.Main.canvasAktif.ctx.strokeStyle = "#ffffff";
 			}
 		}
 
@@ -95,22 +97,22 @@ namespace ha {
 		static repeat() {
 			//check semua image sudah diload
 
-			ha.Blijs.loop();
+			ha.be.Blijs.loop();
 
 			setTimeout(() => {
 				// requestAnimationFrame(() => {
-				// 	ha.Blijs.repeat();
+				// 	ha.be.Blijs.repeat();
 				// });
-				requestAnimationFrame(ha.Blijs.repeat);
-			}, ha.Main.fps);
+				requestAnimationFrame(ha.be.Blijs.repeat);
+			}, ha.be.Main.fps);
 		}
 
 		static windowResize(): void {
 			// console.debug('window on resize');
-			let canvas: HTMLCanvasElement = ha.Main.canvasAktif.canvas;
+			let canvas: HTMLCanvasElement = ha.be.Main.canvasAktif.canvas;
 
-			let cp = ha.Main.canvasAktif.canvas.width;
-			let cl = ha.Main.canvasAktif.canvas.height;
+			let cp = ha.be.Main.canvasAktif.canvas.width;
+			let cl = ha.be.Main.canvasAktif.canvas.height;
 
 			let wp = window.innerWidth;
 			let wl = window.innerHeight;
@@ -120,8 +122,8 @@ namespace ha {
 			let cp2 = Math.floor(cp * ratio);
 			let cl2 = Math.floor(cl * ratio);
 
-			ha.Main.canvasAktif.ratioX = ratio;
-			ha.Main.canvasAktif.ratioY = ratio;
+			ha.be.Main.canvasAktif.ratioX = ratio;
+			ha.be.Main.canvasAktif.ratioY = ratio;
 
 			canvas.style.position = 'fixed';
 			canvas.style.zIndex = '9999';
@@ -145,5 +147,5 @@ namespace ha {
 }
 
 // setTimeout(() => {
-// 	ha.Blijs.init()
+// 	ha.be.Blijs.init()
 // }, 0);

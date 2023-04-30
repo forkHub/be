@@ -5,34 +5,34 @@
  * BLITZ-INPUT.TS
  */
 
-const InputHit = ha.input.InputHit;
-const InputX = ha.input.InputX;
-const InputY = ha.input.InputY;
-const GeserX = ha.input.GeserX;
-const GeserY = ha.input.GeserY;
-const FlushInput = ha.input.FlushInput;
-const Pencet = ha.input.Pencet;
-const Geser = ha.input.Geser;
-const InputType = ha.input.InputType;
+const InputHit = ha.be.input.InputHit;
+const InputX = ha.be.input.InputX;
+const InputY = ha.be.input.InputY;
+const GeserX = ha.be.input.GeserX;
+const GeserY = ha.be.input.GeserY;
+const FlushInput = ha.be.input.FlushInput;
+const Pencet = ha.be.input.Pencet;
+const Geser = ha.be.input.Geser;
+const InputType = ha.be.input.InputType;
 
 /**
  * 	KEYBOARD (di tunda/dihapus)
  */
 const FlushKeys = () => {
-	ha.input.flushByInput(ha.input.keybGlobal);
-	ha.input.flushByType('keyb');
+	ha.be.input.flushByInput(ha.be.input.keybGlobal);
+	ha.be.input.flushByType('keyb');
 }
 
 const GetKey = (): string => {
-	return ha.input.keybGlobal.key;
+	return ha.be.input.keybGlobal.key;
 }
 
 const KeybDiPencet = (key: string = ''): boolean => {
 	if ("" == key) {
-		return ha.input.keybGlobal.isDown;
+		return ha.be.input.keybGlobal.isDown;
 	}
 	else {
-		let input: IInput = ha.input.getInput(key, 'keyb');
+		let input: IInput = ha.be.input.getInput(key, 'keyb');
 		if (input) {
 			return input.isDown;
 		}
@@ -43,12 +43,12 @@ const KeybDiPencet = (key: string = ''): boolean => {
 
 const KeybHit = (key: string = ''): number => {
 	if ("" == key) {
-		let n: number = ha.input.keybGlobal.hit;
-		ha.input.keybGlobal.hit = 0;
+		let n: number = ha.be.input.keybGlobal.hit;
+		ha.be.input.keybGlobal.hit = 0;
 		return (n);
 	}
 	else {
-		let input: IInput = ha.input.getInput(key, 'keyb');
+		let input: IInput = ha.be.input.getInput(key, 'keyb');
 		let n: number = 0;
 
 		if (input) {

@@ -3,6 +3,6 @@
 /**
  * TEXTS
  */
-var Font = ha.Teks.font;
-var Tulis = ha.Teks.tulis;
-var Rata = ha.Teks.rata;
+var Font = ha.be.Teks.font;
+var Tulis = ha.be.Teks.tulis;
+var Rata = ha.be.Teks.rata;

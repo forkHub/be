@@ -6,7 +6,7 @@ enum EInput {
 	DEF = ''
 }
 
-namespace ha {
+namespace ha.be {
 	class Input {
 		private _inputs: IInput[] = [];	//any input,
 
@@ -32,42 +32,42 @@ namespace ha {
 
 		InputType(): EInput {
 
-			return ha.input.inputGlobal.type;
+			return input.inputGlobal.type;
 		}
 
 		InputHit(): number {
-			let hit: number = ha.input.inputGlobal.hit;
-			ha.input.inputGlobal.hit = 0;
+			let hit: number = input.inputGlobal.hit;
+			input.inputGlobal.hit = 0;
 
 			return hit;
 		}
 
 		InputX(): number {
-			return ha.input.inputGlobal.x;
+			return input.inputGlobal.x;
 		}
 
 		InputY(): number {
-			return ha.input.inputGlobal.y;
+			return input.inputGlobal.y;
 		}
 
 		GeserX(): number {
-			return ha.input.inputGlobal.xDrag
+			return input.inputGlobal.xDrag
 		}
 
 		GeserY(): number {
-			return ha.input.inputGlobal.yDrag
+			return input.inputGlobal.yDrag
 		}
 
 		FlushInput(): void {
-			ha.input.flush();
+			input.flush();
 		}
 
 		Pencet(): boolean {
-			return ha.input.inputGlobal.isDown;
+			return input.inputGlobal.isDown;
 		}
 
 		Geser(): boolean {
-			return ha.input.inputGlobal.isDrag;
+			return input.inputGlobal.isDrag;
 		}
 
 		getMouseKeyId(e: PointerEvent): string {
@@ -84,19 +84,21 @@ namespace ha {
 		init(buffer: IGambar): void {
 			console.log('input init');
 
+			buffer.canvas.style.touchAction = 'none';
+
 			buffer.canvas.onpointerdown = (e: PointerEvent) => {
 				e.stopPropagation();
 				e.preventDefault();
 
-				let pos: any = ha.input.pos(e.clientX, e.clientY, buffer, buffer.ratioX, buffer.ratioY);
+				let pos: any = ha.be.input.pos(e.clientX, e.clientY, buffer);
 				let key: string = this.getMouseKeyId(e);
-				let input: IInput = ha.input.baru(key, e.pointerType as EInput);
+				let input: IInput = ha.be.input.baru(key, e.pointerType as EInput);
 
-				ha.input.event.down(input, key, e.pointerType as EInput, pos);
-				ha.input.event.down(this._inputGlobal, key, e.pointerType as EInput, pos);
+				ha.be.input.event.down(input, key, e.pointerType as EInput, pos);
+				ha.be.input.event.down(this._inputGlobal, key, e.pointerType as EInput, pos);
 
-				if ("mouse" == e.pointerType) ha.input.event.down(this._mouseGlobal, key, EInput.MOUSE, pos);
-				if ("touch" == e.pointerType) ha.input.event.down(this._touchGlobal, key, EInput.TOUCH, pos);
+				if ("mouse" == e.pointerType) ha.be.input.event.down(this._mouseGlobal, key, EInput.MOUSE, pos);
+				if ("touch" == e.pointerType) ha.be.input.event.down(this._touchGlobal, key, EInput.TOUCH, pos);
 
 				ha.sprite2.inputDown(pos, e.pointerId);
 			}
@@ -105,15 +107,15 @@ namespace ha {
 				e.stopPropagation();
 				e.preventDefault();
 
-				let pos: any = ha.input.pos(e.clientX, e.clientY, buffer, buffer.ratioX, buffer.ratioY);
+				let pos: any = ha.be.input.pos(e.clientX, e.clientY, buffer);
 				let key: string = this.getMouseKeyId(e);
 				let input: IInput = this.baru(key, e.pointerType as EInput);
 
-				ha.input.event.move(input, buffer, e);
-				ha.input.event.move(this.inputGlobal, buffer, e);
+				ha.be.input.event.move(input, buffer, e);
+				ha.be.input.event.move(this.inputGlobal, buffer, e);
 
-				if (e.pointerType == 'touch') ha.input.event.move(ha.input.touchGlobal, buffer, e);
-				if (e.pointerType == 'mouse') ha.input.event.move(ha.input.mouseGlobal, buffer, e);
+				if (e.pointerType == 'touch') ha.be.input.event.move(ha.be.input.touchGlobal, buffer, e);
+				if (e.pointerType == 'mouse') ha.be.input.event.move(ha.be.input.mouseGlobal, buffer, e);
 
 				//sprite
 				ha.sprite2.inputMove(pos, e.pointerId);
@@ -123,14 +125,14 @@ namespace ha {
 				e.stopPropagation();
 				e.preventDefault();
 
-				let key: string = ha.input.getMouseKeyId(e);
-				let input: IInput = ha.input.baru(key, e.pointerType as EInput);
+				let key: string = ha.be.input.getMouseKeyId(e);
+				let input: IInput = ha.be.input.baru(key, e.pointerType as EInput);
 
-				ha.input.event.up(input);
-				ha.input.event.up(ha.input.inputGlobal);
+				ha.be.input.event.up(input);
+				ha.be.input.event.up(ha.be.input.inputGlobal);
 
-				if (e.pointerType == 'touch') ha.input.event.up(ha.input.touchGlobal);
-				if (e.pointerType == 'mouse') ha.input.event.up(ha.input.mouseGlobal);
+				if (e.pointerType == 'touch') ha.be.input.event.up(ha.be.input.touchGlobal);
+				if (e.pointerType == 'mouse') ha.be.input.event.up(ha.be.input.mouseGlobal);
 			}
 
 			buffer.canvas.onpointercancel = (e: PointerEvent) => {
@@ -145,10 +147,10 @@ namespace ha {
 				let key: string = this.getMouseKeyId(e);
 				let input: IInput = this.baru(key, e.pointerType as EInput);
 
-				ha.input.event.up(input);
-				ha.input.event.up(this.inputGlobal);
-				if (e.pointerType == 'touch') ha.input.event.up(ha.input.touchGlobal);
-				if (e.pointerType == 'mouse') ha.input.event.up(ha.input.mouseGlobal);
+				ha.be.input.event.up(input);
+				ha.be.input.event.up(this.inputGlobal);
+				if (e.pointerType == 'touch') ha.be.input.event.up(ha.be.input.touchGlobal);
+				if (e.pointerType == 'mouse') ha.be.input.event.up(ha.be.input.mouseGlobal);
 
 				//sprite up
 				//sprite hit
@@ -168,10 +170,10 @@ namespace ha {
 				// e.stopPropagation();
 				// e.preventDefault();
 
-				let input: IInput = ha.input.baru(e.key + '', EInput.KEYB);
-				ha.input.event.down(input, e.key, EInput.KEYB, ha.Point.create());
-				ha.input.event.down(this.inputGlobal, e.key, EInput.KEYB, ha.Point.create());
-				ha.input.event.down(this._keybGlobal, e.key, EInput.KEYB, ha.Point.create());
+				let input: IInput = ha.be.input.baru(e.key + '', EInput.KEYB);
+				ha.be.input.event.down(input, e.key, EInput.KEYB, ha.be.Point.create());
+				ha.be.input.event.down(this.inputGlobal, e.key, EInput.KEYB, ha.be.Point.create());
+				ha.be.input.event.down(this._keybGlobal, e.key, EInput.KEYB, ha.be.Point.create());
 
 				// console.log('keydown');
 			};
@@ -179,10 +181,10 @@ namespace ha {
 			window.onkeyup = (e: KeyboardEvent) => {
 				// e.stopPropagation();
 
-				let input: IInput = ha.input.baru(e.key + '', EInput.KEYB);
-				ha.input.event.up(input);
-				ha.input.event.up(this.inputGlobal);
-				ha.input.event.up(this._keybGlobal);
+				let input: IInput = ha.be.input.baru(e.key + '', EInput.KEYB);
+				ha.be.input.event.up(input);
+				ha.be.input.event.up(this.inputGlobal);
+				ha.be.input.event.up(this._keybGlobal);
 			}
 		}
 
@@ -293,8 +295,12 @@ namespace ha {
 			return input;
 		}
 
-		pos = (cx: number, cy: number, buffer: IGambar, canvasScaleX: number, canvasScaleY: number) => {
+		pos = (cx: number, cy: number, buffer: IGambar) => {
 			let rect: DOMRect = buffer.canvas.getBoundingClientRect();
+
+			let canvasScaleX = parseInt(window.getComputedStyle(buffer.canvas).width) / buffer.canvas.width;
+			let canvasScaleY = parseInt(window.getComputedStyle(buffer.canvas).height) / buffer.canvas.height;
+
 			let poslx: number = Math.floor((cx - rect.x) / canvasScaleX);
 			let posly: number = Math.floor((cy - rect.y) / canvasScaleY);
 
@@ -333,7 +339,7 @@ namespace ha {
 	class EventHandler {
 
 		move(input: IInput, buffer: IGambar, e: PointerEvent): void {
-			let pos: any = ha.input.pos(e.clientX, e.clientY, buffer, buffer.ratioX, buffer.ratioY);
+			let pos: any = ha.be.input.pos(e.clientX, e.clientY, buffer);
 			input.x = pos.x;
 			input.y = pos.y;
 			input.id = e.pointerId;

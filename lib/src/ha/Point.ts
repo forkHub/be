@@ -1,4 +1,4 @@
-namespace ha {
+namespace ha.be {
 	export class Point {
 
 		static create(x: number = 0, y: number = 0): IPoint2D {
@@ -14,7 +14,7 @@ namespace ha {
 		}
 
 		static clone(p: IPoint2D): IPoint2D {
-			let h: IPoint2D = ha.Point.create(p.x, p.y);
+			let h: IPoint2D = Point.create(p.x, p.y);
 			return h;
 		}
 
@@ -56,7 +56,7 @@ namespace ha {
 		}
 
 		static posPolar(jarak: number, sudut: number, xt: number, yt: number): IPoint2D {
-			let hasil: IPoint2D = ha.Point.create();
+			let hasil: IPoint2D = Point.create();
 
 			hasil.x = jarak * Math.cos(sudut * Transform.DEG2RAD);
 			hasil.y = jarak * Math.sin(sudut * Transform.DEG2RAD);

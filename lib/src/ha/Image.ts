@@ -1,4 +1,4 @@
-namespace ha {
+namespace ha.be {
 
 	class Gambar implements IGambar {
 		img: HTMLImageElement;
@@ -67,7 +67,7 @@ namespace ha {
 			canvas.width = w;
 			canvas.height = h;
 
-			let rect: IRect = ha.Rect.create(0, 0, frameW, frameH);
+			let rect: IRect = ha.be.Rect.create(0, 0, frameW, frameH);
 
 			img = new Gambar();
 			img.load = true;
@@ -102,10 +102,10 @@ namespace ha {
 		}
 
 		static gambarRect(spr: ISprite) {
-			ha.Image.resetRect(spr.buffer);
-			ha.Image.rectToImageTransform(spr.buffer, spr.x, spr.y);
+			Image.resetRect(spr.buffer);
+			Image.rectToImageTransform(spr.buffer, spr.x, spr.y);
 
-			let ctx: CanvasRenderingContext2D = ha.Main.canvasAktif.ctx;
+			let ctx: CanvasRenderingContext2D = Main.canvasAktif.ctx;
 			let rect: IRect = spr.buffer.rect;
 
 			ctx.beginPath();
@@ -122,13 +122,13 @@ namespace ha {
 		static buat(w: number = 32, h: number = 32, frameW: number = 32, frameH: number = 32): IGambar {
 			let canvas: HTMLCanvasElement = document.createElement('canvas') as HTMLCanvasElement;
 
-			return ha.Image.buatBagiCanvas(canvas, w, h, frameW, frameH);
+			return Image.buatBagiCanvas(canvas, w, h, frameW, frameH);
 			// let img: IGambar;
 
 			// canvas.width = w;
 			// canvas.height = h;
 
-			// let rect: IRect = ha.Rect.create(0, 0, frameW, frameH);
+			// let rect: IRect = ha.be.Rect.create(0, 0, frameW, frameH);
 
 			// img = {
 			// 	panjang: w,
@@ -177,26 +177,26 @@ namespace ha {
 		static handleY(gbr: IGambar): number { return gbr.handleY; };
 
 		static tabrakan(gbr1: IGambar, x1: number, y1: number, gbr2: IGambar, x2: number, y2: number): boolean {
-			ha.Image.resetRect(gbr1);
-			ha.Image.rectToImageTransform(gbr1, x1, y1);
+			Image.resetRect(gbr1);
+			Image.rectToImageTransform(gbr1, x1, y1);
 
-			ha.Image.resetRect(gbr2);
-			ha.Image.rectToImageTransform(gbr2, x2, y2);
+			Image.resetRect(gbr2);
+			Image.rectToImageTransform(gbr2, x2, y2);
 
-			return ha.Rect.collide(gbr1.rect, gbr2.rect);
+			return ha.be.Rect.collide(gbr1.rect, gbr2.rect);
 		};
 
 		static dotDidalamGambar(gbr1: IGambar, x1: number, y1: number, x2: number, y2: number): boolean {
-			ha.Image.resetRect(gbr1);
-			ha.Image.rectToImageTransform(gbr1, x1, y1);
+			Image.resetRect(gbr1);
+			Image.rectToImageTransform(gbr1, x1, y1);
 
-			return ha.Rect.collideDot(gbr1.rect, x2, y2);
+			return ha.be.Rect.collideDot(gbr1.rect, x2, y2);
 		};
 
 		static muatAnimAsync(url: string, fw: number, fh: number): IGambar {
 			let canvas: HTMLCanvasElement = document.createElement('canvas');
 
-			return ha.Image.muatAnimAsyncCanvas(url, fw, fh, canvas);
+			return Image.muatAnimAsyncCanvas(url, fw, fh, canvas);
 		}
 
 		static muatAnimAsyncCanvas(url: string, fw: number, fh: number, canvas: HTMLCanvasElement): IGambar {
@@ -204,7 +204,7 @@ namespace ha {
 			let ctx: CanvasRenderingContext2D = canvas.getContext('2d');
 			let rect: IRect;
 
-			rect = ha.Rect.create(0, 0, fw, fh);
+			rect = ha.be.Rect.create(0, 0, fw, fh);
 
 			let gbr: IGambar = new Gambar();
 			gbr.isAnim = true;
@@ -253,7 +253,7 @@ namespace ha {
 				//TODO: default image
 			}
 
-			let img2: HTMLImageElement = ha.cache.getGbr(url);
+			let img2: HTMLImageElement = ha.be.cache.getGbr(url);
 			if (img2) {
 				imgOnLoad(img2);
 			}
@@ -278,7 +278,7 @@ namespace ha {
 					gbr.lebar = fh;
 				}
 
-				ha.cache.setFile(url, img);
+				ha.be.cache.setFile(url, img);
 			}
 
 			return gbr;
@@ -287,7 +287,7 @@ namespace ha {
 		static muatAsync(url: string): IGambar {
 			let canvas: HTMLCanvasElement = document.createElement('canvas');
 
-			return ha.Image.muatAsyncKanvas(url, canvas);
+			return Image.muatAsyncKanvas(url, canvas);
 		}
 
 		static muatAsyncKanvas(url: string, canvas: HTMLCanvasElement): IGambar {
@@ -295,7 +295,7 @@ namespace ha {
 			let ctx: CanvasRenderingContext2D = canvas.getContext('2d');
 			let rect: IRect;
 
-			rect = ha.Rect.create(0, 0, img.naturalWidth, img.naturalHeight);
+			rect = ha.be.Rect.create(0, 0, img.naturalWidth, img.naturalHeight);
 
 			let gbr: IGambar = {
 				img: img,
@@ -327,7 +327,7 @@ namespace ha {
 				//TODO: default image
 			}
 
-			let img2: HTMLImageElement = ha.cache.getGbr(url);
+			let img2: HTMLImageElement = ha.be.cache.getGbr(url);
 			if (img2) {
 				imgOnLoad(img2);
 			}
@@ -339,7 +339,7 @@ namespace ha {
 				canvas.width = img.naturalWidth;
 				canvas.height = img.naturalHeight;
 				ctx.drawImage(img, 0, 0);
-				gbr.rect = ha.Rect.create(0, 0, img.naturalWidth, img.naturalHeight);
+				gbr.rect = ha.be.Rect.create(0, 0, img.naturalWidth, img.naturalHeight);
 
 				gbr.load = true;
 				gbr.img = img;
@@ -357,7 +357,7 @@ namespace ha {
 				gbr.frameH = img.naturalHeight;
 				gbr.frameW = img.naturalWidth;
 
-				ha.cache.setFile(url, img);
+				ha.be.cache.setFile(url, img);
 			}
 
 			return gbr;
@@ -385,12 +385,12 @@ namespace ha {
 
 			frame = Math.floor(frame);
 
-			jmlH = Math.ceil((ha.Main.canvasAktif.panjang + Math.abs(x)) / w2);
-			jmlV = Math.ceil((ha.Main.canvasAktif.lebar + Math.abs(y)) / h2);
+			jmlH = Math.ceil((Main.canvasAktif.panjang + Math.abs(x)) / w2);
+			jmlV = Math.ceil((Main.canvasAktif.lebar + Math.abs(y)) / h2);
 
 			for (let i: number = 0; i < jmlH; i++) {
 				for (let j: number = 0; j < jmlV; j++) {
-					ha.Image.gambar(gbr, x + (i * w2), y + (j * h2), frame);
+					Image.gambar(gbr, x + (i * w2), y + (j * h2), frame);
 				}
 			}
 		}
@@ -401,7 +401,7 @@ namespace ha {
 
 		static AmbilPiksel(x: number = 0, y: number = 0): number[] {
 			try {
-				let data: Uint8ClampedArray = ha.Main.canvasAktif.ctx.getImageData(x, y, 1, 1).data;
+				let data: Uint8ClampedArray = Main.canvasAktif.ctx.getImageData(x, y, 1, 1).data;
 
 				let hasil: number[] = [];
 
@@ -410,11 +410,11 @@ namespace ha {
 				hasil.push(data[2]);
 				hasil.push(data[3]);
 
-				ha.Main.merah = data[0];
-				ha.Main.hijau = data[1];
-				ha.Main.biru = data[2];
-				ha.Main.transparan = data[3];
-				ha.Main.Warna(ha.Main.merah, ha.Main.hijau, ha.Main.biru, ha.Main.transparan);
+				Main.merah = data[0];
+				Main.hijau = data[1];
+				Main.biru = data[2];
+				Main.transparan = data[3];
+				Main.Warna(Main.merah, Main.hijau, Main.biru, Main.transparan);
 
 				return hasil;
 			}
@@ -426,7 +426,7 @@ namespace ha {
 		}
 
 		static SetPiksel(x: number = 0, y: number = 0) {
-			ha.Main.canvasAktif.ctx.fillRect(Math.floor(x), Math.floor(y), 1, 1);
+			Main.canvasAktif.ctx.fillRect(Math.floor(x), Math.floor(y), 1, 1);
 		}
 
 		static handle(gbr: IGambar, x: number = 0, y: number = 0) {
@@ -435,11 +435,11 @@ namespace ha {
 		}
 
 		static grabGambar(gbr: IGambar, x: number = 0, y: number = 0) {
-			gbr.ctx.drawImage(ha.Main.canvasAktif.canvas, x, y, gbr.panjang, gbr.lebar, 0, 0, gbr.panjang, gbr.lebar);
+			gbr.ctx.drawImage(Main.canvasAktif.canvas, x, y, gbr.panjang, gbr.lebar, 0, 0, gbr.panjang, gbr.lebar);
 		}
 
 		static gambar(gbr: IGambar, x: number = 0, y: number = 0, frame: number = 0) {
-			let ctx: CanvasRenderingContext2D = ha.Main.canvasAktif.ctx;
+			let ctx: CanvasRenderingContext2D = Main.canvasAktif.ctx;
 			let jmlH: number = 0;
 			let jmlV: number = 0;
 			let frameX: number = 0;
@@ -547,11 +547,11 @@ namespace ha {
 			p.y = y2;
 
 			//translate
-			ha.Rect.translate(rect, x, y);
-			ha.Rect.translate(rect, -image.handleX, -image.handleY);
+			ha.be.Rect.translate(rect, x, y);
+			ha.be.Rect.translate(rect, -image.handleX, -image.handleY);
 
 			//rotate
-			ha.Rect.rotate(rect, image.rotasi, x, y, false);
+			ha.be.Rect.rotate(rect, image.rotasi, x, y, false);
 		}
 
 	}

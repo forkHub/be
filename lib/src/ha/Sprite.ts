@@ -58,11 +58,11 @@ namespace ha {
 		}
 
 		static panjang(spr: ISprite, pj?: number): number {
-			return ha.Image.panjang(spr.buffer, pj);
+			return ha.be.Image.panjang(spr.buffer, pj);
 		}
 
 		static lebar(spr: ISprite, lb?: number): number {
-			return ha.Image.lebar(spr.buffer, lb);
+			return ha.be.Image.lebar(spr.buffer, lb);
 		}
 
 		static alpha(spr: ISprite, alpha?: number): number {
@@ -120,7 +120,7 @@ namespace ha {
 		}
 
 		static tabrakan(spr: ISprite, spr2: ISprite): boolean {
-			return ha.Image.tabrakan(spr.buffer, ha.Sprite.posisiX(spr), ha.Sprite.posisiY(spr), spr2.buffer, ha.Sprite.posisiX(spr2), ha.Sprite.posisiY(spr2))
+			return ha.be.Image.tabrakan(spr.buffer, ha.Sprite.posisiX(spr), ha.Sprite.posisiY(spr), spr2.buffer, ha.Sprite.posisiX(spr2), ha.Sprite.posisiY(spr2))
 		}
 
 		private static muatAnimasiAsyncKanvas(
@@ -131,12 +131,12 @@ namespace ha {
 			canvas: HTMLCanvasElement,
 			tipeDrag: number): ISprite {
 
-			let img: IGambar = ha.Image.muatAnimAsyncCanvas(url, pf, lf, canvas);
+			let img: IGambar = ha.be.Image.muatAnimAsyncCanvas(url, pf, lf, canvas);
 			return ha.Sprite.buatPrivate(img, bisaDiDrag, url, tipeDrag);
 		}
 
 		static muatAnimasiAsync(url: string, pf: number, lf: number, bisaDiDrag: boolean = false, tipeDrag: number = 0): ISprite {
-			let img: IGambar = ha.Image.muatAnimAsync(url, pf, lf);
+			let img: IGambar = ha.be.Image.muatAnimAsync(url, pf, lf);
 			return ha.Sprite.buatPrivate(img, bisaDiDrag, url, tipeDrag);
 		}
 
@@ -146,18 +146,18 @@ namespace ha {
 			canvas: HTMLCanvasElement,
 			tipeDrag: number): ISprite {
 
-			let img: IGambar = ha.Image.muatAsyncKanvas(url, canvas);
+			let img: IGambar = ha.be.Image.muatAsyncKanvas(url, canvas);
 			return ha.Sprite.buatPrivate(img, dragable, url, tipeDrag);
 		}
 
 		static muatAsync(url: string, bisaDiDrag = false, tipeDrag: number = 0): ISprite {
-			let img: IGambar = ha.Image.muatAsync(url);
+			let img: IGambar = ha.be.Image.muatAsync(url);
 			let spr: ISprite = ha.Sprite.buatPrivate(img, bisaDiDrag, url, tipeDrag);
 			return spr;
 		}
 
 		static ukuran(gbr: ISprite, w: number, h: number): void {
-			ha.Image.ukuran(gbr.buffer, w, h);
+			ha.be.Image.ukuran(gbr.buffer, w, h);
 		}
 
 		private static buatPrivate(
@@ -186,11 +186,11 @@ namespace ha {
 		}
 
 		static gambar(sprite: ISprite, frame?: number): void {
-			ha.Image.gambar(sprite.buffer, sprite.x, sprite.y, frame);
+			ha.be.Image.gambar(sprite.buffer, sprite.x, sprite.y, frame);
 		}
 
 		static posisiPolar(sprite: ISprite, sudut: number, jarak: number, x2: number, y2: number, skalaX: number = 1, skalaY: number = 1): void {
-			let p: IPoint2D = ha.Point.posPolar(jarak, sudut, x2, y2);
+			let p: IPoint2D = ha.be.Point.posPolar(jarak, sudut, x2, y2);
 
 			p.y -= y2;
 			p.y *= skalaY;
@@ -205,7 +205,7 @@ namespace ha {
 		}
 
 		static ubin(spr: ISprite, x: number = 0, y: number = 0, frame: number = 0) {
-			ha.Image.gambarUbin(spr.buffer, x, y, frame);
+			ha.be.Image.gambarUbin(spr.buffer, x, y, frame);
 		}
 
 		static statusMuat(spr?: ISprite): boolean {
