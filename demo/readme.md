@@ -16,6 +16,10 @@
 [mesin](https://forkhub.github.io/blitz_edu/demo/mesin.html) - mesin sederhana
 
 ## Demo Pendidikan
+[tata surya #1](https://forkhub.github.io/blitz_edu/demo/orbit.html) - bumi mengelilingi matahari  
+[tata surya #2](https://forkhub.github.io/blitz_edu/demo/orbit_oval.html) - simulasi tatasurya  
+[tata surya #3](https://forkhub.github.io/blitz_edu/demo/orbit_mbb.html) - simulasi tatasurya  
+[tata surya #4](https://forkhub.github.io/blitz_edu/demo/orbit_04.html) - simulasi tatasurya  
 
 
 
