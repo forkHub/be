@@ -13,6 +13,7 @@
 [jam](https://forkhub.github.io/blitz_edu/demo/jam.html) - simulasi jam    
 [tombol putar 2](https://forkhub.github.io/blitz_edu/demo/knob.html) - tombol putar yang lebih kompleks  
 [salju](https://forkhub.github.io/blitz_edu/demo/salju.html) - simulasi salju  
+[ular](https://forkhub.github.io/blitz_edu/demo/ular.html) -- ular dengan banyak segmen
 
 ## Demo Pendidikan
 [tata surya #1](https://forkhub.github.io/blitz_edu/demo/orbit.html) - bumi mengelilingi matahari  
