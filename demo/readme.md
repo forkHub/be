@@ -18,7 +18,7 @@
 [tata surya #1](https://forkhub.github.io/blitz_edu/demo/orbit.html) - bumi mengelilingi matahari  
 [tata surya #2](https://forkhub.github.io/blitz_edu/demo/orbit_oval.html) - matahari, bumi dan bulan dalam orbit oval  
 [tata surya #3](https://forkhub.github.io/blitz_edu/demo/orbit_mbb.html) - matahari, bumi dan bulan  
-[tata surya #4](https://forkhub.github.io/blitz_edu/demo/orbit_04.html) - bumi mengelilingi matahari dengan kecepatan berbeda tergantung jarak. Semakin jauh semakin melambat. 
+[tata surya #4](https://forkhub.github.io/blitz_edu/demo/orbit_04.html) - bumi mengelilingi matahari dengan kecepatan berbeda tergantung jarak. Semakin jauh semakin melambat.  
 [mesin](https://forkhub.github.io/blitz_edu/demo/mesin.html) - mesin sederhana
 
 
