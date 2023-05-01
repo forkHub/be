@@ -13,13 +13,13 @@
 [jam](https://forkhub.github.io/blitz_edu/demo/jam.html) - simulasi jam    
 [tombol putar 2](https://forkhub.github.io/blitz_edu/demo/knob.html) - tombol putar yang lebih kompleks  
 [salju](https://forkhub.github.io/blitz_edu/demo/salju.html) - simulasi salju  
-[mesin](https://forkhub.github.io/blitz_edu/demo/mesin.html) - mesin sederhana
 
 ## Demo Pendidikan
 [tata surya #1](https://forkhub.github.io/blitz_edu/demo/orbit.html) - bumi mengelilingi matahari  
-[tata surya #2](https://forkhub.github.io/blitz_edu/demo/orbit_oval.html) - simulasi tatasurya  
-[tata surya #3](https://forkhub.github.io/blitz_edu/demo/orbit_mbb.html) - simulasi tatasurya  
-[tata surya #4](https://forkhub.github.io/blitz_edu/demo/orbit_04.html) - simulasi tatasurya  
+[tata surya #2](https://forkhub.github.io/blitz_edu/demo/orbit_oval.html) - matahari, bumi dan bulan dalam orbit oval  
+[tata surya #3](https://forkhub.github.io/blitz_edu/demo/orbit_mbb.html) - matahari, bumi dan bulan  
+[tata surya #4](https://forkhub.github.io/blitz_edu/demo/orbit_04.html) - bumi mengelilingi matahari dengan kecepatan berbeda tergantung jarak. Semakin jauh semakin melambat. 
+[mesin](https://forkhub.github.io/blitz_edu/demo/mesin.html) - mesin sederhana
 
 
 
