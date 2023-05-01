@@ -8,7 +8,7 @@
 <a href="https://forkhub.github.io/blitz_edu/demo/dasar_multiple.html">multi touch</a>  - multitouch  
 <a href="https://forkhub.github.io/blitz_edu/demo/dasar_snap.html">snap</a>  - drag yang di snap ke grid  
 [tabrakan](https://forkhub.github.io/blitz_edu/demo/collision.html) - simulasi tabrakan  
-[kurva](https://forkhub.github.io/blitz_edu/demo/cth_kurva.html) - kurva yang bisa di drag   
+[kurva](https://forkhub.github.io/blitz_edu/demo/cth_curva.html) - kurva yang bisa di drag   
 [doodle](https://forkhub.github.io/blitz_edu/demo/doodle.html) - aplikasi menggambar sederhana  
 [jam](https://forkhub.github.io/blitz_edu/demo/jam.html) - simulasi jam    
 [tombol putar 2](https://forkhub.github.io/blitz_edu/demo/knob.html) - tombol putar yang lebih kompleks  
