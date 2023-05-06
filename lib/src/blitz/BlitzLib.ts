@@ -5,7 +5,7 @@
  */
 const Bersih = ha.be.Main.Bersih;
 
-const Grafis = ha.be.Blijs.Grafis;
+const Grafis = ha.be.Main.Grafis;
 
 const Warna = ha.be.Main.Warna;
 const Merah = ha.be.Main.Merah;

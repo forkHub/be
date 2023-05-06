@@ -1,6 +1,8 @@
 namespace ha.be {
 
 	export class Main {
+		// private static _skalaOtomatis: boolean = true;
+
 		// private static _fps: number = 0;
 		// private static _origin: IV2D;
 		private static _canvasAr: IGambar[] = [];
@@ -19,7 +21,39 @@ namespace ha.be {
 			t: 1
 		}
 
-		//TODOL ganti agar bisa gonta-ganti kontek
+		/**
+		 * Handle saat window di resize
+		 */
+		private static windowResize(): void {
+			// console.debug('window on resize');
+			let canvas: HTMLCanvasElement = Main.canvasAktif.canvas;
+
+			let cp = Main.canvasAktif.canvas.width;
+			let cl = Main.canvasAktif.canvas.height;
+
+			let wp = window.innerWidth;
+			let wl = window.innerHeight;
+
+			let ratio = Math.min((wp / cp), (wl / cl));
+
+			let cp2 = Math.floor(cp * ratio);
+			let cl2 = Math.floor(cl * ratio);
+
+			Main.canvasAktif.ratioX = ratio;
+			Main.canvasAktif.ratioY = ratio;
+
+			canvas.style.position = 'fixed';
+			canvas.style.zIndex = '9999';
+			canvas.style.width = cp2 + 'px';
+			canvas.style.height = cl2 + 'px';
+
+			canvas.style.top = ((wl - cl2) / 2) + 'px';
+			canvas.style.left = ((wp - cp2) / 2) + 'px';
+
+			// console.debug('canvas w: ' + canvas.style.width + '/ratio: ' + ratio);
+		}
+
+		//TODO: ganti agar bisa gonta-ganti kontek
 		//parameternya adalah sprite/canvas/kontex
 		//tujuannya agar bisa diedit langsung oleh perintah kontek yang lain
 		static Kontek(spr?: ISprite | HTMLCanvasElement): CanvasRenderingContext2D {
@@ -164,7 +198,74 @@ namespace ha.be {
 			return Main.canvasAktif.canvas;
 		}
 
-		static Grafis(p: number = 320, l: number = 240, ubahStyle: boolean): void {
+		/**
+		 * Setup Blitz Edu
+		 * @param panjang (angka) panjang dari kanvas
+		 * @param lebar (angka) lebar dari kanvs
+		 * @param canvas (HTMLCanvasElement) referensi ke kanvas
+		 * @param fullScreen (boolean) apakah akan men-skala kanvas mengikuti ukuran layar/fullscreen  
+		 * @returns 
+		 */
+		static Grafis(panjang: number = 320, lebar: number = 240, canvas: HTMLCanvasElement = null, fullScreen: boolean = true, input: boolean = true) {
+
+			//coba cari canvas
+			if (!canvas) {
+				canvas = document.body.querySelector('canvas') as HTMLCanvasElement;
+			}
+
+			if (!canvas) {
+				document.body.appendChild(document.createElement('canvas'));
+			}
+
+			Main.skalaOtomatis = fullScreen;
+			// ha.be.Blijs._inputStatus = input
+
+			//sudah diinisialisasi atau belum
+			if (Main.canvasAktif) {
+				console.warn('init lebih dari sekali');
+				Main.Grafis2(panjang, lebar, Main.skalaOtomatis);
+			}
+			else {
+				console.log('inisialisasi');
+				Main.init(canvas, canvas);
+				Main.Grafis2(panjang, lebar, Main.skalaOtomatis);
+
+				if (input) {
+					ha.be.input.init(Main.canvasAktif);
+				}
+
+				if (Main.skalaOtomatis) {
+					window.onresize = (): void => {
+						if (Main.skalaOtomatis) {
+							Main.windowResize();
+						}
+					}
+				}
+
+				if (Main.skalaOtomatis) {
+					Main.windowResize();
+				}
+
+				setTimeout(() => {
+					if (Main.skalaOtomatis) {
+						Main.windowResize();
+					}
+				}, 100);
+
+				// setTimeout(() => {
+				// 	ha.be.Blijs.repeat();
+				// }, 0);
+
+				//font default
+				ha.be.Teks.font("12px sans-serif");
+				ha.be.Teks.rata("center");
+				Main.Warna(255, 255, 255, 100);
+				Main.canvasAktif.ctx.strokeStyle = "#ffffff";
+			}
+		}
+
+
+		static Grafis2(p: number = 320, l: number = 240, ubahStyle: boolean): void {
 			let canvas: IGambar = Main.canvasAktif;
 
 			canvas.canvas.width = p;
@@ -181,8 +282,8 @@ namespace ha.be {
 			canvas.lebar = l;
 
 			setTimeout(() => {
-				if (Blijs.skalaOtomatis) {
-					Blijs.windowResize();
+				if (Main.skalaOtomatis) {
+					Main.windowResize();
 				}
 				else {
 
