@@ -6,6 +6,7 @@ enum EInput {
 	DEF = ''
 }
 
+//TODO: use static
 namespace ha.be {
 
 	/**

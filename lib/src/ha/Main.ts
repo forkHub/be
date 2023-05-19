@@ -43,7 +43,7 @@ namespace ha.be {
 			Main.canvasAktif.ratioY = ratio;
 
 			canvas.style.position = 'fixed';
-			canvas.style.zIndex = '9999';
+			canvas.style.zIndex = '1';
 			canvas.style.width = cp2 + 'px';
 			canvas.style.height = cl2 + 'px';
 
