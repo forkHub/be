@@ -9,7 +9,7 @@ namespace ha {
 	 */
 	class SpriteInteraksi {
 		inputDown(pos: any, id: number): void {
-			console.debug('input down');
+			// console.debug('input down');
 
 			// ha.Sprite.daftar.forEach((item: ISprite) => {
 			// 	item.down = false;

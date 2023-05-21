@@ -231,7 +231,7 @@ namespace ha.be {
 				Main.Grafis2(panjang, lebar, Main.skalaOtomatis);
 
 				if (input) {
-					ha.be.input.init(Main.canvasAktif);
+					Input.init(Main.canvasAktif);
 				}
 
 				if (Main.skalaOtomatis) {

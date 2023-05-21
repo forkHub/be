@@ -31,6 +31,9 @@ interface IInput {
 	timerStart: number;
 	timerEnd: number;
 	id: number;	//TODO: mungkin bisa dihapus
+	dragJml: number;
+	dragSelesaiJml: number;
+	tapJml: number;
 }
 
 interface IGambar {

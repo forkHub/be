@@ -4,15 +4,20 @@
  * shortcut buat perintah input 
  * BLITZ-INPUT.TS
  */
-const InputHit = ha.be.input.InputHit;
-const InputX = ha.be.input.InputX;
-const InputY = ha.be.input.InputY;
-const GeserX = ha.be.input.GeserX;
-const GeserY = ha.be.input.GeserY;
-const FlushInput = ha.be.input.FlushInput;
-const Pencet = ha.be.input.Pencet;
-const Geser = ha.be.input.Geser;
-const InputType = ha.be.input.InputType;
+const InputHit = ha.be.Input.InputHit;
+const InputX = ha.be.Input.InputX;
+const InputY = ha.be.Input.InputY;
+const InputXAwal = ha.be.Input.InputXAwal;
+const InputYAwal = ha.be.Input.InputYAwal;
+const GeserX = ha.be.Input.GeserX;
+const GeserY = ha.be.Input.GeserY;
+const FlushInput = ha.be.Input.FlushInput;
+const Pencet = ha.be.Input.Pencet;
+const Geser = ha.be.Input.Geser;
+const InputType = ha.be.Input.InputType;
+const JmlTap = ha.be.Input.JmlTap;
+const JmlDrag = ha.be.Input.JmlDragStart;
+const JmlDragSelesai = ha.be.Input.JmlDragSelesai;
 
 // const FlushKeys = () => {
 // 	// ha.be.input.flushByInput(ha.be.input.keybGlobal);
