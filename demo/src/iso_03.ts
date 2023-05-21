@@ -3,11 +3,19 @@
  * 
  * drag mouse
  * taruh kursor di peta
+ * taruh pohon di posisi kursor
  * 
  */
 
 window.onload = () => {
 	Grafis(300, 300);
+
+	const tanamTbl: HTMLButtonElement = document.body.querySelector('button.tanam') as HTMLButtonElement;
+	tanamTbl.onclick = () => {
+		// console.log('tanam klik');
+		updatePeta();
+		updateTombolLabel();
+	}
 
 	//buat kursor
 	const kursor = {
@@ -24,14 +32,26 @@ window.onload = () => {
 		xs: 0,
 		ys: 0
 	}
-	vp;
+
+	//buat peta
+	// 10 x 10
+	const peta: number[][] = [];
+	for (let i = 0; i < 10; i++) {
+		peta[i] = [];
+		for (let j = 0; j < 10; j++) {
+			peta[i][j] = 0;
+		}
+	}
 
 	//Muat gambar
-	let ubin: ISprite = Muat("./gbr/ubin.png");
+	const ubin: ISprite = Muat("./gbr/ubin.png");
 	Handle(ubin, 32, 0);
 
-	let kursorSpr: ISprite = Muat("./gbr/ubin_cursor.png");
+	const kursorSpr: ISprite = Muat("./gbr/ubin_cursor.png");
 	Handle(kursorSpr, 32, 0);
+
+	const pohon: ISprite = Muat("./gbr/pohon.png");
+	Handle(pohon, 32, 60 - 32);
 
 	window.requestAnimationFrame(upate);
 	function upate(): void {
@@ -41,37 +61,45 @@ window.onload = () => {
 
 		//bila pointer di tap
 		if (InputHit()) {
-			// updatePeta();
 			updateKursor();
+			updateTombolLabel();
 		}
 
-		gambarUbin();
+		renderPeta();
 		gambarKursor(kursor.xg, kursor.yg);
 
 		window.requestAnimationFrame(upate);
 	}
 
-	/**
-	 * 
-	 * @param xg posisi x grid
-	 * @param yg posisi y grid
-	 */
-	function gambarKursor(xg: number, yg: number): void {
-		//ukuran tiap grid 32 pixel
-		let xl = xg * 32;
-		let yl = yg * 32;
+	function updateTombolLabel() {
+		if (kursor.xg < 0) return;
+		if (kursor.yg < 0) return;
+		if (kursor.xg >= 10) return;
+		if (kursor.yg >= 10) return;
 
-		//proyeksi posisi isometrik ke posisi layar
-		let xs = iso2LayarX(xl, yl);
-		let ys = iso2LayarY(xl, yl);
+		if (peta[kursor.xg][kursor.yg] == 0) {
+			tanamTbl.innerText = 'tanam';
+		}
+		else {
+			tanamTbl.innerText = 'tebang';
+		}
+	}
 
-		//geser untuk mengikuti viewport
-		xs = xs - vp.x;
-		ys = ys - vp.y;
+	function updatePeta(): void {
+		console.log('update peta');
+		if (kursor.xg < 0) return;
+		if (kursor.yg < 0) return;
+		if (kursor.xg >= 10) return;
+		if (kursor.yg >= 10) return;
 
-		kursorSpr.x = xs;
-		kursorSpr.y = ys;
-		Gambar(kursorSpr);
+		if (peta[kursor.xg][kursor.yg] == 0) {
+			peta[kursor.xg][kursor.yg] = 1;
+		}
+		else {
+			peta[kursor.xg][kursor.yg] = 0;
+		}
+
+
 	}
 
 	/**
@@ -111,7 +139,7 @@ window.onload = () => {
 	/**
 	 * menggambar peta di layar
 	 */
-	function gambarUbin(): void {
+	function renderPeta(): void {
 		for (let i = 0; i < 10; i++) {
 			for (let j = 0; j < 10; j++) {
 
@@ -128,8 +156,15 @@ window.onload = () => {
 				xs = xs - vp.x;
 				ys = ys - vp.y;
 
-				Posisi(ubin, xs, ys)
-				Gambar(ubin);
+				if (peta[i][j]) {
+					Posisi(pohon, xs, ys);
+					Gambar(pohon);
+				}
+				else {
+					Posisi(ubin, xs, ys)
+					Gambar(ubin);
+				}
+
 			}
 		}
 
@@ -157,6 +192,30 @@ window.onload = () => {
 		kursor.xg = x;
 		kursor.yg = y;
 
+	}
+
+
+	/**
+	 * 
+	 * @param xg posisi x grid
+	 * @param yg posisi y grid
+	 */
+	function gambarKursor(xg: number, yg: number): void {
+		//ukuran tiap grid 32 pixel
+		let xl = xg * 32;
+		let yl = yg * 32;
+
+		//proyeksi posisi isometrik ke posisi layar
+		let xs = iso2LayarX(xl, yl);
+		let ys = iso2LayarY(xl, yl);
+
+		//geser untuk mengikuti viewport
+		xs = xs - vp.x;
+		ys = ys - vp.y;
+
+		kursorSpr.x = xs;
+		kursorSpr.y = ys;
+		Gambar(kursorSpr);
 	}
 
 	/**
