@@ -33,8 +33,8 @@ namespace ha.be {
 
 			input.xStart = pos.x
 			input.yStart = pos.y;
-			input.xDrag = pos.x;
-			input.yDrag = pos.y;
+			input.xDrag = 0;
+			input.yDrag = 0;
 			input.x = pos.x;
 			input.y = pos.y;
 			input.isDown = true;
@@ -46,6 +46,7 @@ namespace ha.be {
 		}
 
 		up(input: IInput): void {
+
 			if (input.isDrag) {
 				input.dragSelesaiJml++;
 			}
@@ -58,11 +59,13 @@ namespace ha.be {
 			let isTap = this.checkTap(input);
 			input.isTap = (isTap == '');
 
-			if (isTap) {
+			if (input.isTap) {
+				if (Input.debug) {
+					console.debug('tap ok');
+				}
 				input.tapJml++;
 			}
-
-			if (isTap != '') {
+			else {
 				if (Input.debug) {
 					console.debug('tap failed');
 					console.debug(isTap);
@@ -72,8 +75,8 @@ namespace ha.be {
 
 		//check tap
 		checkTap(input: IInput): string {
-			if (Math.abs(input.xDrag) > 5) return "drag x" + input.xDrag;
-			if (Math.abs(input.yDrag) > 5) return "drag y" + input.xDrag;
+			if (Math.abs(input.xDrag) > 5) return "drag x " + input.xDrag;
+			if (Math.abs(input.yDrag) > 5) return "drag y 	" + input.xDrag;
 
 			let timer = input.timerEnd - input.timerStart;
 			if ((timer) > 500) return "timer " + timer;

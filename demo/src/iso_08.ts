@@ -9,9 +9,12 @@
 window.onload = () => {
 	Grafis(300, 300);
 
+	// ha.be.Input.debug = true;
+
 
 	//buat kursor
 	const kursor = {
+		aktif: false,
 		xg: 0,
 		yg: 0
 	}
@@ -65,20 +68,19 @@ window.onload = () => {
 
 	window.requestAnimationFrame(upate);
 	function upate(): void {
-		Bersih();
-
-		gambarUbin();
-
 		if (JmlTap()) {
+			kursor.aktif = true;
 			console.log('tap');
 			layar2Iso(InputX() + vp.x, InputY() + vp.y);
 			kursor.xg = isoPos.xgr;
 			kursor.yg = isoPos.ygr;
-			iso2Layar(kursor.xg * 32, kursor.yg * 32);
-			Posisi(kursorSpr, layarPos.x, layarPos.y);
-			Gambar(kursorSpr);
 		}
 
+		geserViewport();
+
+		Bersih();
+
+		gambarUbin();
 
 		// if (Pencet()) {
 		// 	if (!isoDrag.status) {
@@ -97,8 +99,49 @@ window.onload = () => {
 		// 	gambarAreaDrag();
 		// }
 
+		if (kursor.aktif) {
+			iso2Layar(kursor.xg * 32, kursor.yg * 32);
+			Posisi(kursorSpr, layarPos.x, layarPos.y);
+			Gambar(kursorSpr);
+		}
+
 		window.requestAnimationFrame(upate);
 	}
+
+	/**
+	 * geser viewport
+	 */
+	function geserViewport() {
+
+		//jika sedang dipencet
+		if (Pencet()) {
+
+			//jika status belum digeser
+			//aktifkan status pencet
+			if (vp.dipencet == false) {
+				vp.dipencet = true;
+				vp.xs = vp.x;
+				vp.ys = vp.y;
+			}
+		}
+		else {
+
+			//bila tidak sedang dipencet, reset status pencet
+			vp.dipencet = false;
+		}
+
+		//bisa sedang menggeser 
+		if (Geser()) {
+
+			//bila statusnya lagi dipencet
+			if (vp.dipencet) {
+				vp.x = vp.xs - GeserX();
+				vp.y = vp.ys - GeserY();
+			}
+		}
+
+	}
+
 
 	/**
 	 * geser viewport saat dipencet dan pointer ditekan
