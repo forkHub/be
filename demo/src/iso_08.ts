@@ -2,25 +2,22 @@
  * isometrik
  * =========
  * 
- * geser dan tap untuk menaruh kursor
+ * drag untuk menggeser area 
+ * tap untuk menaruh kursor
  * 
  */
 
 window.onload = () => {
 	Grafis(300, 300);
 
-	// ha.be.Input.debug = true;
-
-
 	//buat kursor
 	const kursor = {
-		aktif: false,
+		aktif: false,	//status kursor apakah sudah aktif, kursor aktif bila layar di tap
 		xg: 0,
 		yg: 0
 	}
 
-	//posisi isometrik hasil proyeksi
-	//digunakan untuk menyimpan sementara hasi proyeksi
+	//digunakan untuk menyimpan hasi proyeksi terakhir
 	const isoPos = {
 		x: 0,
 		y: 0,
@@ -29,22 +26,11 @@ window.onload = () => {
 		ygr: 0
 	}
 
-	//posisi layar, relatif ke viewport
-	//digunakan untuk menyimpan sementara hasil proyeksi
+	//digunakan untuk menyimpan proyeksi terakhir dari iso ke layar
 	const layarPos = {
 		x: 0,
 		y: 0,
 	}
-
-	// const isoDrag = {
-	// 	status: false,
-	// 	xgr: 0,
-	// 	ygr: 0,
-
-	// 	x2gr: 0,
-	// 	y2gr: 0
-	// }
-
 
 	//buat viewport
 	//untuk menentukan area yang terlihat di layar
@@ -52,7 +38,7 @@ window.onload = () => {
 		x: -150,
 		y: 0,
 
-		dipencet: false,
+		dipencet: false,	//apakah user sedang menggeser layar
 		xs: 0,	//posisi x awal viewport saat pointer dipencet
 		ys: 0	//posisi y awal viewport saat pointer dipencet
 	}
@@ -68,9 +54,10 @@ window.onload = () => {
 
 	window.requestAnimationFrame(upate);
 	function upate(): void {
+
+		//apakah layar pernah di tap
 		if (JmlTap()) {
 			kursor.aktif = true;
-			console.log('tap');
 			layar2Iso(InputX() + vp.x, InputY() + vp.y);
 			kursor.xg = isoPos.xgr;
 			kursor.yg = isoPos.ygr;
@@ -81,23 +68,6 @@ window.onload = () => {
 		Bersih();
 
 		gambarUbin();
-
-		// if (Pencet()) {
-		// 	if (!isoDrag.status) {
-		// 		isoDrag.status = true;
-		// 		layar2Iso(InputX() + vp.x, InputY() + vp.y);
-		// 		isoDrag.xgr = isoPos.xgr;
-		// 		isoDrag.ygr = isoPos.ygr;
-		// 	}
-		// 	Ujung();
-		// }
-		// else {
-		// 	isoDrag.status = false;
-		// }
-
-		// if (Geser()) {
-		// 	gambarAreaDrag();
-		// }
 
 		if (kursor.aktif) {
 			iso2Layar(kursor.xg * 32, kursor.yg * 32);
@@ -118,6 +88,7 @@ window.onload = () => {
 
 			//jika status belum digeser
 			//aktifkan status pencet
+			//simpan posisi awal
 			if (vp.dipencet == false) {
 				vp.dipencet = true;
 				vp.xs = vp.x;
@@ -130,10 +101,11 @@ window.onload = () => {
 			vp.dipencet = false;
 		}
 
-		//bisa sedang menggeser 
+		//bila sedang menggeser 
 		if (Geser()) {
 
 			//bila statusnya lagi dipencet
+			//update posisi
 			if (vp.dipencet) {
 				vp.x = vp.xs - GeserX();
 				vp.y = vp.ys - GeserY();
@@ -141,52 +113,6 @@ window.onload = () => {
 		}
 
 	}
-
-
-	/**
-	 * geser viewport saat dipencet dan pointer ditekan
-	 */
-	// function Ujung() {
-	// 	if (InputX() > 250) {
-	// 		vp.x++;
-	// 	}
-	// 	else if (InputX() < 50) {
-	// 		vp.x--;
-	// 	}
-	// 	else if (InputY() < 50) {
-	// 		vp.y--;
-	// 	}
-	// 	else if (InputY() > 250) {
-	// 		vp.y++;
-	// 	}
-	// }
-
-	// function gambarAreaDrag() {
-	// 	if (!isoDrag.status) return;
-
-	// 	//mencari posisi akhir drag di koordinat iso
-	// 	layar2Iso(InputX() + vp.x, InputY() + vp.y);
-
-	// 	//simpan hasilnya
-	// 	isoDrag.x2gr = isoPos.xgr;
-	// 	isoDrag.y2gr = isoPos.ygr;
-
-	// 	//gambar kotak area drag
-	// 	//cari posisi min dan mak.
-	// 	//drag bisa bergerak ke arah positif atau negatif
-	// 	let xmin = Math.min(isoDrag.xgr, isoDrag.x2gr);
-	// 	let ymin = Math.min(isoDrag.ygr, isoDrag.y2gr);
-	// 	let xmax = Math.max(isoDrag.xgr, isoDrag.x2gr);
-	// 	let ymax = Math.max(isoDrag.ygr, isoDrag.y2gr);
-
-	// 	for (let i = xmin; i <= xmax; i++) {
-	// 		for (let j = ymin; j <= ymax; j++) {
-	// 			iso2Layar(i * 32, j * 32);
-	// 			Posisi(kursorSpr, layarPos.x, layarPos.y);
-	// 			Gambar(kursorSpr);
-	// 		}
-	// 	}
-	// }
 
 	/**
 	 * menggambar ubin di layar
@@ -214,7 +140,6 @@ window.onload = () => {
 		}
 
 	}
-
 
 	function layar2Iso(xl: number, yl: number): void {
 		isoPos.x = layar2IsoX(xl, yl);

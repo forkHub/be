@@ -2,23 +2,12 @@
  * tutorial
  * isometrik
  * 
- * drag untuk menggeser layar
+ * proyeksi isometrik
  * 
  */
 
 window.onload = () => {
 	Grafis(300, 300);
-
-	//buat viewport
-	const vp = {
-		x: -150,
-		y: 0,
-
-		dipencet: false,
-		xs: 0,
-		ys: 0
-	}
-	vp;
 
 	//Muat gambar
 	let ubin: ISprite = Muat("./gbr/ubin.png");
@@ -27,46 +16,10 @@ window.onload = () => {
 	window.requestAnimationFrame(upate);
 	function upate(): void {
 
-		geserViewport();
-
 		Bersih();
 		gambarUbin();
 
 		window.requestAnimationFrame(upate);
-	}
-
-	/**
-	 * geser viewport
-	 */
-	function geserViewport() {
-
-		//jika sedang dipencet
-		if (Pencet()) {
-
-			//jika status belum digeser
-			//aktifkan status pencet
-			if (vp.dipencet == false) {
-				vp.dipencet = true;
-				vp.xs = vp.x;
-				vp.ys = vp.y;
-			}
-		}
-		else {
-
-			//bila tidak sedang dipencet, reset status pencet
-			vp.dipencet = false;
-		}
-
-		//bisa sedang menggeser 
-		if (Geser()) {
-
-			//bila statusnya lagi dipencet
-			if (vp.dipencet) {
-				vp.x = vp.xs - GeserX();
-				vp.y = vp.ys - GeserY();
-			}
-		}
-
 	}
 
 	/**
@@ -84,10 +37,6 @@ window.onload = () => {
 				//proyeksi posisi isometrik ke posisi layar
 				let xs = iso2LayarX(xl, yl);
 				let ys = iso2LayarY(xl, yl);
-
-				//posisi relatif terhadap viewport
-				xs = xs - vp.x;
-				ys = ys - vp.y;
 
 				Posisi(ubin, xs, ys)
 				Gambar(ubin);
