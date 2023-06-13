@@ -289,14 +289,14 @@ namespace ha.be {
 			return gbr;
 		}
 
-		static muatAsync(url: string): IGambar {
-			let canvas: HTMLCanvasElement = document.createElement('canvas');
+		static muatAsync(url: string, onload: () => void): IGambar {
+			let kanvas: HTMLCanvasElement = document.createElement('canvas');
 
-			return Image.muatAsyncKanvas(url, canvas);
+			return Image.muatAsyncKanvas(url, kanvas, onload);
 		}
 
-		static muatAsyncKanvas(url: string, canvas: HTMLCanvasElement): IGambar {
-			let img: HTMLImageElement = document.createElement('img'); //ha_blitz.image.loadImageAsync(url, () => { }, () => { });
+		static muatAsyncKanvas(url: string, canvas: HTMLCanvasElement, onload: () => void): IGambar {
+			let img: HTMLImageElement = document.createElement('img');
 			let ctx: CanvasRenderingContext2D = canvas.getContext('2d');
 			let rect: IRect;
 
@@ -324,6 +324,7 @@ namespace ha.be {
 			}
 
 			img.onload = () => {
+				onload();
 				imgOnLoad(img);
 			}
 
@@ -436,6 +437,11 @@ namespace ha.be {
 			return [0, 0, 0];
 		}
 
+		/**
+		 * 
+		 * @param x 
+		 * @param y 
+		 */
 		static SetPiksel(x: number = 0, y: number = 0) {
 			Main.canvasAktif.ctx.fillRect(Math.floor(x), Math.floor(y), 1, 1);
 		}

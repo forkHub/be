@@ -4,27 +4,29 @@
  * Shortcut untuk perintah-perintah Sprite 
  * */
 
-const Muat = ha.Sprite.muatAsync;
-const MuatAnimasi = ha.Sprite.muatAnimasiAsync;
-const StatusMuat = ha.Sprite.statusMuat;
-const Posisi = ha.Sprite.posisi;
-const Ukuran = ha.Sprite.ukuran;
-const PosisiPolar = ha.Sprite.posisiPolar;
-const Gambar = ha.Sprite.gambar;
-const GambarSemua = ha.Sprite.gambarSemua;
-const PosisiX = ha.Sprite.posisiX;
-const PosisiY = ha.Sprite.posisiY;
-const Handle = ha.Sprite.handle;
-const Rotasi = ha.Sprite.rotasi;
-const Alpha = ha.Sprite.alpha;
-const Tabrakan = ha.Sprite.tabrakan;
-const StatusDrag = ha.Sprite.statusDrag;
+const Muat = ha.be.Sprite.Muat;
+const MuatAsync = ha.be.Sprite.MuatAsync;
+const Dimuat = ha.be.Sprite.Dimuat;
+const MuatAnimasi = ha.be.Sprite.MuatAnimasi;
+const StatusMuat = ha.be.Sprite.StatusMuat;
+const Posisi = ha.be.Sprite.Posisi;
+const Ukuran = ha.be.Sprite.Ukuran;
+const PosisiPolar = ha.be.Sprite.posisiPolar;
+const Gambar = ha.be.Sprite.Gambar;
+const GambarSemua = ha.be.Sprite.GambarSemua;
+const PosisiX = ha.be.Sprite.PosisiX;
+const PosisiY = ha.be.Sprite.PosisiY;
+const Handle = ha.be.Sprite.Handle;
+const Rotasi = ha.be.Sprite.Rotasi;
+const Alpha = ha.be.Sprite.Alpha;
+const Tabrakan = ha.be.Sprite.tabrakan;
+const StatusDrag = ha.be.Sprite.StatusDrag;
+const SpriteKontek = ha.be.Sprite.kontek;
 
-
-const Panjang = ha.Sprite.panjang;
-const Lebar = ha.Sprite.lebar;
-const Copy = ha.Sprite.copy;
-const Ubin = ha.Sprite.ubin;
+const Panjang = ha.be.Sprite.Panjang;
+const Lebar = ha.be.Sprite.Lebar;
+const Copy = ha.be.Sprite.Copy;
+const Ubin = ha.be.Sprite.Ubin;
 
 //status drag
 //type drag

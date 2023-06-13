@@ -5,11 +5,19 @@ namespace ha.be {
 			return Main.canvasAktif.ctx;
 		}
 
-		static font(font: string = '30px Arial'): void {
+		/**
+		 * 
+		 * @param font 
+		 */
+		static Font(font: string = '30px Arial'): void {
 			Teks.ctx.font = font;
 		}
 
-		static rata(rata: CanvasTextAlign = "left"): void {
+		/**
+		 * 
+		 * @param rata 
+		 */
+		static Rata(rata: CanvasTextAlign = "left"): void {
 			Teks.ctx.textAlign = rata;
 		}
 
@@ -21,7 +29,7 @@ namespace ha.be {
 		 * @param warna (boolean=true) apakah akan mengisi teks dengan warna
 		 * @param garis (boolean=false) apakah akan menggunakan outline
 		 */
-		static tulis(teks: string, x: number, y: number, warna: boolean = true, garis: boolean = false): void {
+		static Tulis(teks: string, x: number, y: number, warna: boolean = true, garis: boolean = false): void {
 
 			if (warna) {
 				Teks.ctx.fillText(teks, x, y);

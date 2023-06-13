@@ -34,6 +34,7 @@ interface IInput {
 	dragJml: number;
 	dragSelesaiJml: number;
 	tapJml: number;
+	upJml: number;
 }
 
 interface IGambar {

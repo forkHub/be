@@ -16,7 +16,7 @@ const Pencet = ha.be.Input.Pencet;
 const Geser = ha.be.Input.Geser;
 const InputType = ha.be.Input.InputType;
 const JmlTap = ha.be.Input.JmlTap;
-const JmlDrag = ha.be.Input.JmlDragStart;
+const JmlDragMulai = ha.be.Input.JmlDragMulai;
 const JmlDragSelesai = ha.be.Input.JmlDragSelesai;
 
 // const FlushKeys = () => {

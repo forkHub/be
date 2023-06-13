@@ -66,6 +66,7 @@ namespace ha.be {
 				input.tapJml++;
 			}
 			else {
+				input.upJml++;
 				if (Input.debug) {
 					console.debug('tap failed');
 					console.debug(isTap);
@@ -74,7 +75,7 @@ namespace ha.be {
 		}
 
 		//check tap
-		checkTap(input: IInput): string {
+		private checkTap(input: IInput): string {
 			if (Math.abs(input.xDrag) > 5) return "drag x " + input.xDrag;
 			if (Math.abs(input.yDrag) > 5) return "drag y 	" + input.xDrag;
 
@@ -127,6 +128,16 @@ namespace ha.be {
 			let tap = Input.inputGlobal.tapJml;
 			Input.inputGlobal.tapJml = 0;
 			return tap;
+		}
+
+		/**
+		 * berapa kali pointer diangkat  sejak pemanggilan terakhir kali
+		 * @returns (number)
+		 */
+		static JmlUp(): number {
+			let up = Input.inputGlobal.upJml;
+			Input.inputGlobal.tapJml = 0;
+			return up;
 		}
 
 		/**
@@ -218,7 +229,7 @@ namespace ha.be {
 		 * berapa kali drag dimulai sejak pemanggilan terakhir
 		 * 
 		 */
-		static JmlDragStart(): number {
+		static JmlDragMulai(): number {
 			let hasil = Input.inputGlobal.dragJml;
 			Input.inputGlobal.dragJml = 0;
 
@@ -381,8 +392,8 @@ namespace ha.be {
 				hit: 0,
 				dragJml: 0,
 				dragSelesaiJml: 0,
-				tapJml: 0
-
+				tapJml: 0,
+				upJml: 0
 			}
 		}
 
@@ -468,7 +479,8 @@ namespace ha.be {
 					hit: 0,
 					dragJml: 0,
 					dragSelesaiJml: 0,
-					tapJml: 0
+					tapJml: 0,
+					upJml: 0
 				}
 
 				Input.inputs.push(input);

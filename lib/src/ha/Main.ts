@@ -1,10 +1,6 @@
 namespace ha.be {
 
 	export class Main {
-		// private static _skalaOtomatis: boolean = true;
-
-		// private static _fps: number = 0;
-		// private static _origin: IV2D;
 		private static _canvasAr: IGambar[] = [];
 		private static _canvasAktif: IGambar;
 		private static _skalaOtomatis: boolean = true;
@@ -53,29 +49,19 @@ namespace ha.be {
 			// console.debug('canvas w: ' + canvas.style.width + '/ratio: ' + ratio);
 		}
 
-		//TODO: ganti agar bisa gonta-ganti kontek
-		//parameternya adalah sprite/canvas/kontex
-		//tujuannya agar bisa diedit langsung oleh perintah kontek yang lain
-		static Kontek(spr?: ISprite | HTMLCanvasElement): CanvasRenderingContext2D {
-			let spr2: ISprite = spr as ISprite;
-			if (spr2 && spr2.buffer && spr2.buffer.ctx) {
-				return spr2.buffer.ctx;
-			}
-
-			let spr3: HTMLCanvasElement = spr as HTMLCanvasElement;
-			if (spr3 && (spr3 as HTMLCanvasElement).getContext instanceof Function) {
-				return spr3.getContext('2d');
+		/**
+		 * mengeset/mengembalikan Kontek yang sedang aktif
+		 * 
+		 * @param ctx (CanvasRenderingContext2D) | null
+		 * @returns CanvasRenderingContext2D
+		 */
+		static Kontek(ctx?: CanvasRenderingContext2D): CanvasRenderingContext2D {
+			if (ctx) {
+				Main.canvasAktif.ctx = ctx;
 			}
 
 			return Main.canvasAktif.ctx;
 		}
-
-		// static Fps(n: number) {
-		// 	Main.fps = Math.floor(1000 / n);
-		// 	if (n >= 60) {
-		// 		Main.fps = 0;
-		// 	}
-		// }
 
 		static buatCanvas(canvasEl: HTMLCanvasElement): IGambar {
 			let canvas: IGambar = {
@@ -139,6 +125,7 @@ namespace ha.be {
 		static Bersih(m: number = 0, h: number = 0, b: number = 0, t: number = 100): void {
 			let ctx: CanvasRenderingContext2D = Main.canvasAktif.ctx;
 			Main.backupWarna();
+			ctx.clearRect(0, 0, Main.canvasAktif.panjang, Main.canvasAktif.lebar);
 			ctx.fillStyle = `rgba(${m}, ${h}, ${b}, ${t / 100})`;
 			ctx.fillRect(0, 0, Main.canvasAktif.panjang, Main.canvasAktif.lebar);
 			Main.restoreWarna();
@@ -190,10 +177,18 @@ namespace ha.be {
 			return Main.biru;
 		}
 
+		/**
+		 * 
+		 * @returns 
+		 */
 		static Transparan(): number {
 			return Math.floor(Main.transparan * 100);
 		}
 
+		/**
+		 * 
+		 * @returns 
+		 */
 		static Kanvas(): HTMLCanvasElement {
 			return Main.canvasAktif.canvas;
 		}
@@ -257,8 +252,8 @@ namespace ha.be {
 				// }, 0);
 
 				//font default
-				ha.be.Teks.font("12px sans-serif");
-				ha.be.Teks.rata("center");
+				ha.be.Teks.Font("12px sans-serif");
+				ha.be.Teks.Rata("center");
 				Main.Warna(255, 255, 255, 100);
 				Main.canvasAktif.ctx.strokeStyle = "#ffffff";
 			}
@@ -304,6 +299,13 @@ namespace ha.be {
 			// ha_blitz.Main.windowResize();
 		}
 
+		/**
+		 * 
+		 * @param x1 
+		 * @param y1 
+		 * @param x2 
+		 * @param y2 
+		 */
 		static Garis(x1: number, y1: number, x2: number, y2: number) {
 			let ctx: CanvasRenderingContext2D = Main.canvasAktif.ctx;
 
@@ -318,7 +320,16 @@ namespace ha.be {
 			ctx.stroke();
 		}
 
-		//kotak
+		/**
+		 * 
+		 * @param x1 
+		 * @param y1 
+		 * @param x2 
+		 * @param y2 
+		 * @param isi 
+		 * @param garis 
+		 * @param rotasi 
+		 */
 		static Kotak(x1: number, y1: number, x2: number, y2: number, isi: boolean = false, garis: boolean = true, rotasi: number = 0) {
 			let ctx: CanvasRenderingContext2D = Main.canvasAktif.ctx;
 
@@ -334,6 +345,15 @@ namespace ha.be {
 			}
 		}
 
+		/**
+		 * 
+		 * @param x 
+		 * @param y 
+		 * @param radius 
+		 * @param skalaX 
+		 * @param skalaY 
+		 * @param rotasi 
+		 */
 		static Oval(x: number = 0, y: number = 0, radius: number, skalaX: number = 1, skalaY = .5, rotasi: number = 0) {
 			let ctx: CanvasRenderingContext2D = Main.canvasAktif.ctx;
 
